@@ -3,24 +3,28 @@
 
 extends CharacterBody2D
 
+# ===== PLAYER MOVEMENT =====
 const SPEED := 50.0
 const SPRINT_MULTIPLIER := 1.6
 
+# ===== PLAYER ANIMATION =====
 @onready var anim := $AnimatedSprite2D
-@onready var world_environment := get_tree().current_scene.get_node("WorldEnvironment")
-
 var facing := "down"
 
+# ===== WORLD LIGHTING =====
+@onready var world_environment := get_tree().current_scene.get_node("WorldEnvironment")
+
+# ===== CURSOR GUN =====
 @export var cursor_gun: Texture2D = preload("res://Asset/Texture/GUI/cursor_gun.png")
 const CURSOR_GUN_OFFSET := Vector2(64, 64)
-var cursor_is_gun := false
+var gun_equipped := false
 var _default_cursor_shape: Input.CursorShape
 @onready var gun_shoot: AudioStreamPlayer2D = $Audio/GunShoot
 
-# --- Gun flash light (PointLight2D) ---
+# ===== GUN FLASH =====
 @onready var gun_flash: PointLight2D = $"PointLight2D (Gun Flash)"
 @export var gun_flash_duration: float = 0.04
-var _gun_flash_token: int = 0
+var _gun_flash_id: int = 0
 
 # ====================
 # INPUTS
@@ -33,9 +37,11 @@ func _input(event: InputEvent) -> void:
 		restart()
 
 	if event.is_action_pressed("action_gun"):
-		toggle_cursor_gun()
+		gun_toggle()
 
-	if event.is_action_pressed("action_shoot") and cursor_is_gun:
+	if event.is_action_pressed("action_shoot") and gun_equipped:
+		if _is_mouse_over_ui():
+			return
 		shoot()
 
 # ====================
@@ -43,9 +49,7 @@ func _input(event: InputEvent) -> void:
 # ====================
 func _ready() -> void:
 	_default_cursor_shape = Input.get_current_cursor_shape()
-	Input.set_custom_mouse_cursor(null) # Ensure we start clean
-
-	# Make sure the flash starts hidden
+	#Input.set_custom_mouse_cursor(null)
 	gun_flash.visible = false
 
 func _physics_process(delta: float) -> void:
@@ -88,10 +92,10 @@ func restart() -> void:
 	await get_tree().create_timer(1).timeout
 	get_tree().call_deferred("reload_current_scene")
 
-func toggle_cursor_gun() -> void:
-	cursor_is_gun = !cursor_is_gun
+func gun_toggle() -> void:
+	gun_equipped = !gun_equipped
 
-	if cursor_is_gun:
+	if gun_equipped:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 		Input.set_custom_mouse_cursor(
 			cursor_gun,
@@ -105,19 +109,34 @@ func toggle_cursor_gun() -> void:
 func shoot() -> void:
 	if not gun_shoot.playing:
 		gun_shoot.pitch_scale = randf_range(0.95, 1.0)
-		gun_shoot.play()
 		_flash_gun()
+		gun_shoot.play()
 
 func _flash_gun() -> void:
-	# Cancel/override previous flash if spamming
-	_gun_flash_token += 1
-	var my_token := _gun_flash_token
+	# Can override previous flash if spamming
+	_gun_flash_id += 1
+	var current_id := _gun_flash_id
 
-	# Show the flash briefly
+	# Flash appear
 	gun_flash.visible = true
 
 	await get_tree().create_timer(gun_flash_duration).timeout
-	if my_token != _gun_flash_token:
+	if current_id != _gun_flash_id:
 		return
 
 	gun_flash.visible = false
+
+# Block shoot when clicking buttons when gun is enabled
+func _is_mouse_over_ui() -> bool:
+	var hovered := get_viewport().gui_get_hovered_control()
+	if hovered == null:
+		return false
+
+	# Block shoot when hovering HUD buttons
+	var node: Node = hovered
+	while node != null:
+		if node is TextureButton:
+			return true
+		node = node.get_parent()
+
+	return false

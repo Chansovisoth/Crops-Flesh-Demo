@@ -1,17 +1,16 @@
-# flashlight.gd
-# Attach to PointLight2D (triangle flashlight)
+# Script   : flashlight.gd
+# Function : All the neat flashlight functionalities
 
 extends PointLight2D
 
+# ===== OFFSET =====
 @export_range(-180.0, 180.0, 1.0)
 var offset_degree: float = -90
 
-# Flicker defaults
+# ===== FLICKER =====
 @export var flicker_min_energy: float = 0.2
 @export var flicker_max_energy: float = 1.0
 @export var flicker_speed: float = 0.05
-
-# Sequence tuning
 @export var pre_flicker_duration: float = 0.35
 @export var off_duration: float = 5.0
 @export var post_flicker_duration: float = 0.45
@@ -20,23 +19,36 @@ var _is_flickering := false
 var _flicker_timer := 0.0
 var _flicker_duration := 0.0
 var _base_energy: float
-
 var _sequence_running := false
 var _sequence_id := 0
 
+# ====================
+# INPUTS
+# ====================
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_SEMICOLON:
+				start_flicker(1.5) # debug flicker
+			KEY_BACKSLASH:
+				run_flicker_off_on_sequence()
+
+# ====================
+# MAIN FUNCTIONS
+# ====================
 func _ready() -> void:
 	randomize()
 	_base_energy = energy
 
 func _process(delta: float) -> void:
-	# --- ROTATE TO MOUSE ---
+	# Rotate with mouse cursor
 	if enabled:
 		var mouse_pos := get_global_mouse_position()
 		var dir := mouse_pos - global_position
 		if dir.length_squared() > 0.0001:
 			global_rotation = dir.angle() + deg_to_rad(offset_degree)
 
-	# --- FLICKER UPDATE ---
+	# Flicker update
 	if _is_flickering:
 		_flicker_timer -= delta
 		if _flicker_timer <= 0.0:
@@ -47,18 +59,11 @@ func _process(delta: float) -> void:
 		if _flicker_duration <= 0.0:
 			stop_flicker()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_ENTER:
-				start_flicker(1.5) # DEBUG flicker
-			KEY_BACKSLASH:
-				run_flicker_off_on_sequence()
+# ====================
+# OTHER
+# ====================
 
-# =========================
-# PUBLIC FLICKER API
-# =========================
-
+# ===== FLICKER CONTROLS =====
 func start_flicker(
 	duration: float,
 	min_energy: float = flicker_min_energy,
@@ -77,10 +82,7 @@ func stop_flicker() -> void:
 	_is_flickering = false
 	energy = _base_energy
 
-# ======================================
-# SEQUENCE: flicker -> OFF -> flicker ON
-# ======================================
-
+# ===== FLICKER SEQUENCE =====
 func run_flicker_off_on_sequence() -> void:
 	if _sequence_running:
 		return

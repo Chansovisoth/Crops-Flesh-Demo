@@ -12,7 +12,6 @@ func _ready() -> void:
 		if child is TextureButton:
 			var button := child as TextureButton
 			button.self_modulate = NORMAL_COLOR
-			# Connect hover signals to HBox handlers, to pass the button
 			button.mouse_entered.connect(_on_btn_entered.bind(button))
 			button.mouse_exited.connect(_on_btn_exited.bind(button))
 

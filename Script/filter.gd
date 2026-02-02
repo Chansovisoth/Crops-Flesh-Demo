@@ -7,7 +7,7 @@ var fade_speed := 10
 var target_exposure := 1.0
 
 func _process(delta: float) -> void:
-	# Prevent crashes during scene reload 
+	# Prevent crash when scene reload 
 	if environment == null:
 		return
 	
