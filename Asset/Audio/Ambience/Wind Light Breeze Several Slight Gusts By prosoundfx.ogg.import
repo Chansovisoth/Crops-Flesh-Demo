@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bca3ixf7qdjdp"
+path="res://.godot/imported/Wind Light Breeze Several Slight Gusts By prosoundfx.ogg-33e7df6915687e9e7c22a9ef35aa602f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Asset/Audio/Ambience/Wind Light Breeze Several Slight Gusts By prosoundfx.ogg"
+dest_files=["res://.godot/imported/Wind Light Breeze Several Slight Gusts By prosoundfx.ogg-33e7df6915687e9e7c22a9ef35aa602f.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
