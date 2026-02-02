@@ -29,7 +29,7 @@ Video demonstrates the following:
 
 ![Screenshot 3](Screenshot/3.png)
 
-![Screenshot 1](Screenshot/4.png)
+![Screenshot 4](Screenshot/4.png)
 
 ## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/304404433/static/light/3.0" height="40"/> Visual Style & Mood 
 
