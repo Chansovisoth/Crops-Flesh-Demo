@@ -72,7 +72,7 @@ This repository includes an **Alpha version release** demonstrating:
 - Lighting effects
 - HUD buttons
 
-Future versions will expand gameplay, polish visuals, and add content. :p
+This is all I got for now. More to see in the future. :p
 
 
 
