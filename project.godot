@@ -13,7 +13,7 @@ config_version=5
 config/name="latest"
 run/main_scene="uid://cbno0hsmv4qdv"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://icon_godot.svg"
 
 [input]
 
