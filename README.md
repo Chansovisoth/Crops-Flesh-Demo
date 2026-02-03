@@ -7,7 +7,13 @@ The core experience focuses on survival under pressure, where every action, what
 
 ## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/303796012/static/light/3.0" height="40"/> Gameplay Video (Alpha) 
 
-[![Gameplay Demo](https://img.youtube.com/vi/1ODa7_0328M/maxresdefault.jpg)](https://youtu.be/1ODa7_0328M)
+<!-- [![Gameplay Demo](https://img.youtube.com/vi/1ODa7_0328M/hqdefault.jpg)](https://youtu.be/1ODa7_0328M) -->
+
+<p align="center">
+  <a href="https://youtu.be/1ODa7_0328M">
+    <img src="https://img.youtube.com/vi/1ODa7_0328M/hqdefault.jpg" alt="Gameplay Demo">
+  </a>
+</p>
 
 <p align="center">
   Click to redirect to YouTube
@@ -72,7 +78,7 @@ This repository includes an **Alpha version release** demonstrating:
 - Lighting effects
 - HUD buttons
 
-Future versions will expand gameplay, polish visuals, and add content. :p
+This is all I got for now. More to see in the future. :p
 
 
 
