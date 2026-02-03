@@ -17,5 +17,4 @@ data_*/
 mono_crash.*.json
 
 # Executable ignores
-Crops&Flesh.exe
-Crops&Flesh.console.exe
+*.exe
