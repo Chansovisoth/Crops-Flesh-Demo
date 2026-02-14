@@ -49,7 +49,7 @@ func _input(event: InputEvent) -> void:
 # ====================
 func _ready() -> void:
 	_default_cursor_shape = Input.get_current_cursor_shape()
-	#Input.set_custom_mouse_cursor(null)
+	Input.set_custom_mouse_cursor(null)
 	gun_flash.visible = false
 
 func _physics_process(delta: float) -> void:

@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="latest"
+config/tags=PackedStringArray("crops&flesh")
 run/main_scene="uid://cbno0hsmv4qdv"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon_godot.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Asset/Audio/": "red",
+"res://Asset/Texture/": "green",
+"res://Script/": "yellow"
+}
 
 [input]
 
