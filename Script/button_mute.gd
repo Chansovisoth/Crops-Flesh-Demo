@@ -2,7 +2,7 @@
 # Function : Button for toggling background music
 
 extends TextureButton
-@onready var background_music := get_tree().current_scene.get_node("Map/YSort/Player/Audio/BackgroundMusic")
+@onready var background_music: AudioStreamPlayer2D = $"../../../../../Map/YSort/Player/Audio/BackgroundMusic"
 
 @export var unmuted_normal: Texture2D = preload("res://Asset/Texture/GUI/tres/unmuted_normal.tres")
 @export var unmuted_pressed: Texture2D = preload("res://Asset/Texture/GUI/tres/unmuted_pressed.tres")

@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://26t8wq24rkcs"]
+
+[ext_resource type="Script" uid="uid://wxlf0xgrhrnb" path="res://Script/hud_button.gd" id="1_mnrcq"]
+[ext_resource type="Texture2D" uid="uid://dp4m7ct2geygb" path="res://Asset/Texture/GUI/Buttons.png" id="2_2vev5"]
+[ext_resource type="Script" uid="uid://ce3pxskism2wn" path="res://Script/button_restart.gd" id="3_4xxn1"]
+[ext_resource type="Texture2D" uid="uid://djq0jc116na2e" path="res://Asset/Texture/GUI/tres/muted_normal.tres" id="4_3qwin"]
+[ext_resource type="Texture2D" uid="uid://jftrofqmq1sp" path="res://Asset/Texture/GUI/tres/muted_pressed.tres" id="5_7odbf"]
+[ext_resource type="Script" uid="uid://dvevwoji0bysm" path="res://Script/button_mute.gd" id="6_hjpjq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuhwe"]
+atlas = ExtResource("2_2vev5")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afcgt"]
+atlas = ExtResource("2_2vev5")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn5fn"]
+atlas = ExtResource("2_2vev5")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvdge"]
+atlas = ExtResource("2_2vev5")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whtey"]
+atlas = ExtResource("2_2vev5")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dks8w"]
+atlas = ExtResource("2_2vev5")
+region = Rect2(16, 48, 16, 16)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+offset_right = 50.0
+offset_bottom = 16.0
+scale = Vector2(3, 3)
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+script = ExtResource("1_mnrcq")
+
+[node name="RestartButton" type="TextureButton" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("AtlasTexture_kuhwe")
+texture_pressed = SubResource("AtlasTexture_afcgt")
+texture_hover = SubResource("AtlasTexture_kuhwe")
+script = ExtResource("3_4xxn1")
+
+[node name="MuteButton" type="TextureButton" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+action_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource("4_3qwin")
+texture_pressed = ExtResource("5_7odbf")
+texture_hover = ExtResource("4_3qwin")
+script = ExtResource("6_hjpjq")
+unmuted_normal = SubResource("AtlasTexture_fn5fn")
+unmuted_pressed = SubResource("AtlasTexture_vvdge")
+muted_normal = SubResource("AtlasTexture_whtey")
+muted_pressed = SubResource("AtlasTexture_dks8w")
+
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/RestartButton" to="Control/MarginContainer/HBoxContainer/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MuteButton" to="Control/MarginContainer/HBoxContainer/MuteButton" method="_on_pressed"]

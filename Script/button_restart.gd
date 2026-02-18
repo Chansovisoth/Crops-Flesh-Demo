@@ -2,7 +2,7 @@
 # Function : Button for restarting the game
 
 extends Node
-@onready var player := get_tree().current_scene.get_node("Map/YSort/Player")
+@onready var player: CharacterBody2D = $"../../../../../Map/YSort/Player"
 
 func _on_pressed() -> void:
 	player.restart()

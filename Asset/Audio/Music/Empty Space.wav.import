@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bst13jx8fatal"
+path="res://.godot/imported/Empty Space.wav-802e27170a1a2775fe3363c9ad76fbe3.sample"
+
+[deps]
+
+source_file="res://Asset/Audio/Music/Empty Space.wav"
+dest_files=["res://.godot/imported/Empty Space.wav-802e27170a1a2775fe3363c9ad76fbe3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,201 @@
+[gd_scene load_steps=24 format=3 uid="uid://bvy0a056yrogn"]
+
+[ext_resource type="Script" uid="uid://cvx8gbcd6xysc" path="res://Script/player.gd" id="1_1vqkc"]
+[ext_resource type="Texture2D" uid="uid://dd2oh6hl7gjv4" path="res://Asset/Texture/Character/Cat/idle_down.png" id="2_uktg4"]
+[ext_resource type="Texture2D" uid="uid://c0gt4jsdqaqjo" path="res://Asset/Texture/Character/Cat/idle_left.png" id="3_jx4b7"]
+[ext_resource type="Texture2D" uid="uid://tssnytd04pdx" path="res://Asset/Texture/Character/Cat/idle_right.png" id="4_2mxbm"]
+[ext_resource type="Texture2D" uid="uid://dn7u6wo0v04q6" path="res://Asset/Texture/Character/Cat/idle_up.png" id="5_wfp4b"]
+[ext_resource type="Texture2D" uid="uid://txdns2wyexok" path="res://Asset/Texture/Character/Cat/walk_down0.png" id="6_8jg3e"]
+[ext_resource type="Texture2D" uid="uid://ykkfrwgu7no0" path="res://Asset/Texture/Character/Cat/walk_down1.png" id="7_6xvy4"]
+[ext_resource type="Texture2D" uid="uid://dtf2axtjl6wd8" path="res://Asset/Texture/Character/Cat/walk_down2.png" id="8_b881n"]
+[ext_resource type="Texture2D" uid="uid://cc4m4kqeircea" path="res://Asset/Texture/Character/Cat/walk_left0.png" id="9_2gnqs"]
+[ext_resource type="Texture2D" uid="uid://bl4ifbdde6llt" path="res://Asset/Texture/Character/Cat/walk_left1.png" id="10_c1eh6"]
+[ext_resource type="Texture2D" uid="uid://cw6dfopqooeoj" path="res://Asset/Texture/Character/Cat/walk_left2.png" id="11_ddib3"]
+[ext_resource type="Texture2D" uid="uid://c0pnvluh6b7fs" path="res://Asset/Texture/Character/Cat/walk_right0.png" id="12_h2j5n"]
+[ext_resource type="Texture2D" uid="uid://dajjb5hkymm7s" path="res://Asset/Texture/Character/Cat/walk_right1.png" id="13_2p1i5"]
+[ext_resource type="Texture2D" uid="uid://brynue1645ddl" path="res://Asset/Texture/Character/Cat/walk_right2.png" id="14_yosb2"]
+[ext_resource type="Texture2D" uid="uid://c07sqmeyp0wpq" path="res://Asset/Texture/Character/Cat/walk_up0.png" id="15_1axnv"]
+[ext_resource type="Texture2D" uid="uid://bvhalrn47wfoh" path="res://Asset/Texture/Character/Cat/walk_up1.png" id="16_bk8bd"]
+[ext_resource type="Texture2D" uid="uid://cyo8smdofgal" path="res://Asset/Texture/Character/Cat/walk_up2.png" id="17_cvqm3"]
+[ext_resource type="Texture2D" uid="uid://7ulplr1l85m4" path="res://Asset/Texture/Effect/flashlight_triangle.png" id="18_71nu8"]
+[ext_resource type="Script" uid="uid://btl8mmj0fnlrk" path="res://Script/flashlight.gd" id="19_dfe5c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ryui3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uktg4")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jx4b7")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2mxbm")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wfp4b")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_8jg3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6xvy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b881n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6xvy4")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2gnqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c1eh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ddib3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c1eh6")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_h2j5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2p1i5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yosb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2p1i5")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_1axnv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_bk8bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_cvqm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_bk8bd")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gl6pp"]
+size = Vector2(8, 8)
+
+[sub_resource type="Gradient" id="Gradient_c8uwk"]
+offsets = PackedFloat32Array(0.2, 0.6933333)
+colors = PackedColorArray(0.6174547, 0.61745477, 0.6174546, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v456u"]
+gradient = SubResource("Gradient_c8uwk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 9
+script = ExtResource("1_1vqkc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 2
+z_as_relative = false
+sprite_frames = SubResource("SpriteFrames_ryui3")
+animation = &"walk_down"
+offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(1.25, 0.5)
+shape = SubResource("RectangleShape2D_gl6pp")
+
+[node name="PointLight2D (Occlusion)" type="PointLight2D" parent="."]
+scale = Vector2(3.2549806, 2.375)
+color = Color(0.7606387, 0.45481777, 3.85046e-07, 1)
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 0.8
+texture = SubResource("GradientTexture2D_v456u")
+
+[node name="PointLight2D (Occlusion Triangle)" type="PointLight2D" parent="."]
+position = Vector2(0, -9.999985)
+scale = Vector2(3.2549806, 2.375)
+color = Color(0.7606387, 0.45481777, 3.85046e-07, 1)
+energy = 1.84
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("18_71nu8")
+offset = Vector2(0, 40)
+texture_scale = 0.1
+script = ExtResource("19_dfe5c")
+
+[node name="PointLight2D (Prop Lighter)" type="PointLight2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(2.255, 2.375)
+color = Color(0.7606387, 0.45481777, 3.85046e-07, 1)
+energy = 1.5
+range_item_cull_mask = 2
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_v456u")
+
+[node name="PointLight2D (Gun Flash)" type="PointLight2D" parent="."]
+visible = false
+light_mask = 0
+visibility_layer = 0
+position = Vector2(0, 4)
+scale = Vector2(-7.321, 5.5)
+color = Color(0.8432388, 0.491611, 1.347661e-06, 1)
+energy = 0.5
+range_item_cull_mask = 2
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_v456u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true

@@ -39,7 +39,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_gun"):
 		gun_toggle()
 
-	if event.is_action_pressed("action_shoot") and gun_equipped:
+	if event.is_action_pressed("action_use") and gun_equipped:
 		if _is_mouse_over_ui():
 			return
 		shoot()
