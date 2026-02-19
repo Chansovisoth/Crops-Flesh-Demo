@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://4wd4b8emv343" path="res://Asset/Texture/Environment/Tileset/Wall_Tiles.png" id="8_00i6b"]
 [ext_resource type="PackedScene" uid="uid://bvy0a056yrogn" path="res://Scene/player.tscn" id="9_6e56i"]
 [ext_resource type="AudioStream" uid="uid://b54q7hxc1cam0" path="res://Asset/Audio/Music/ZombieSmash/04 Better Off Undead.mp3" id="28_0ab61"]
+[ext_resource type="Script" uid="uid://giqs8cimywug" path="res://Script/scene_trigger_click.gd" id="28_pbc3o"]
 [ext_resource type="AudioStream" uid="uid://b57tcncm5o8yd" path="res://Asset/Audio/Ambience/Gentle Breeze at Night By Sound-Ideas.ogg" id="28_wjsmb"]
 [ext_resource type="AudioStream" uid="uid://c5yivgbv68g55" path="res://Asset/Audio/SFX/gun_shoot.mp3" id="29_jueb1"]
 [ext_resource type="PackedScene" uid="uid://26t8wq24rkcs" path="res://Scene/hud.tscn" id="29_pbc3o"]
@@ -28,7 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://cvfxaelqfb0vv" path="res://Asset/Texture/Environment/Structure/Floors.png" id="42_lhpr6"]
 [ext_resource type="Texture2D" uid="uid://b113s3cuk84as" path="res://Asset/Texture/Environment/Structure/Shadows.png" id="43_j0co4"]
 [ext_resource type="Texture2D" uid="uid://c6y0l6m3g2wjx" path="res://Asset/Texture/Environment/Structure/Walls.png" id="44_dgpnb"]
-[ext_resource type="Script" uid="uid://bwov7mxhriuad" path="res://Script/scene_trigger.gd" id="46_37xso"]
 
 [sub_resource type="Environment" id="Environment_c8uwk"]
 background_mode = 3
@@ -7955,7 +7955,7 @@ tile_set = SubResource("TileSet_kuhwe")
 y_sort_enabled = true
 
 [node name="Player" parent="Map/YSort" instance=ExtResource("9_6e56i")]
-position = Vector2(400, 24)
+position = Vector2(440, 8)
 
 [node name="Audio" type="Node2D" parent="Map/YSort/Player"]
 visible = false
@@ -8029,16 +8029,17 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAASAPr/AgAAAAIAAAATAPn/AgABAAEAAAATAPr/AgABAAIAAAA=")
 tile_set = SubResource("TileSet_iorda")
 
-[node name="SceneTrigger" type="Area2D" parent="Map"]
+[node name="SceneTriggerClick" type="Area2D" parent="Map"]
 position = Vector2(440, 0)
 collision_layer = 8
 collision_mask = 8
-script = ExtResource("46_37xso")
+script = ExtResource("28_pbc3o")
 connected_scene = "home"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SceneTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SceneTriggerClick"]
 shape = SubResource("RectangleShape2D_j0sia")
 
 [node name="HUD" parent="." instance=ExtResource("29_pbc3o")]
 
-[connection signal="body_entered" from="Map/SceneTrigger" to="Map/SceneTrigger" method="_on_body_entered"]
+[connection signal="body_entered" from="Map/SceneTriggerClick" to="Map/SceneTriggerClick" method="_on_body_entered"]
+[connection signal="body_exited" from="Map/SceneTriggerClick" to="Map/SceneTriggerClick" method="_on_body_exited"]

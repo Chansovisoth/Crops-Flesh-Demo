@@ -16,7 +16,9 @@ func _ready() -> void:
 			button.mouse_exited.connect(_on_btn_exited.bind(button))
 
 func _on_btn_entered(button: TextureButton) -> void:
+	print("hud_button: _on_btn_entered()")
 	button.self_modulate = HOVER_COLOR
 
 func _on_btn_exited(button: TextureButton) -> void:
+	print("hud_button: _on_btn_exited()")
 	button.self_modulate = NORMAL_COLOR

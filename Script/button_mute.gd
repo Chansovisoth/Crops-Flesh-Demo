@@ -15,7 +15,7 @@ func _on_pressed() -> void:
 	muted = !muted
 	background_music.volume_db = -80 if muted else 0
 	_apply_visual(true if muted else false)
-	print("BUTTON: Background Music Toggled")
+	print("button_mute: _on_pressed()")
 	
 func _apply_visual(muted: bool) -> void:
 	if muted:
@@ -26,3 +26,4 @@ func _apply_visual(muted: bool) -> void:
 		texture_normal  = unmuted_normal
 		texture_hover   = unmuted_normal
 		texture_pressed = unmuted_pressed
+	print("button_mute:\n- ", texture_normal.resource_path, "\n- ", texture_hover.resource_path, "\n- ", texture_pressed.resource_path)

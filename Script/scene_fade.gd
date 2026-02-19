@@ -1,4 +1,6 @@
-# filter.gd
+# Script   : scene_fade.gd
+# Function : Fade-in and Fade-out, also Fade-in whenever new scene starts
+
 extends WorldEnvironment
 
 @export var fade_speed: float = 10.0
@@ -14,10 +16,10 @@ func _ready() -> void:
 	if environment == null:
 		return
 
-	# IMPORTANT: avoid editing a shared Environment resource (prevents "stays black after restart")
+	# IMPORTANT: need to avoid editing a shared Environment resource (to prevent "stays black after restart")
 	environment = environment.duplicate(true)
 
-	# Capture the "normal" exposure from the duplicated resource (or override via export)
+	# Capture "normal" exposure from the duplicated resource (or override via export)
 	_default_exposure = environment.tonemap_exposure if normal_exposure == -INF else normal_exposure
 
 	# Start from black, then fade in
@@ -36,11 +38,14 @@ func _process(delta: float) -> void:
 	)
 
 func fade_in() -> void:
+	print("scene_fade: fade_in()")
 	target_exposure = _default_exposure
 
 func fade_out() -> void:
+	print("scene_fade: fade_out()")
 	target_exposure = black_exposure
 
 func set_black() -> void:
+	print("scene_fade: set_black()")
 	environment.tonemap_exposure = black_exposure
 	target_exposure = black_exposure

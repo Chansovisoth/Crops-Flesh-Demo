@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bvy0a056yrogn"]
+[gd_scene load_steps=25 format=3 uid="uid://bvy0a056yrogn"]
 
 [ext_resource type="Script" uid="uid://cvx8gbcd6xysc" path="res://Script/player.gd" id="1_1vqkc"]
 [ext_resource type="Texture2D" uid="uid://dd2oh6hl7gjv4" path="res://Asset/Texture/Character/Cat/idle_down.png" id="2_uktg4"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cyo8smdofgal" path="res://Asset/Texture/Character/Cat/walk_up2.png" id="17_cvqm3"]
 [ext_resource type="Texture2D" uid="uid://7ulplr1l85m4" path="res://Asset/Texture/Effect/flashlight_triangle.png" id="18_71nu8"]
 [ext_resource type="Script" uid="uid://btl8mmj0fnlrk" path="res://Script/flashlight.gd" id="19_dfe5c"]
+[ext_resource type="AudioStream" uid="uid://dyrv5gdf0s57h" path="res://Asset/Audio/SFX/footstep_concrete.mp3" id="20_7d6xm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ryui3"]
 animations = [{
@@ -199,3 +200,7 @@ texture = SubResource("GradientTexture2D_v456u")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_7d6xm")
+volume_db = -9.0

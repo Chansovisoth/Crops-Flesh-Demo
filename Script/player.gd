@@ -6,10 +6,15 @@ extends CharacterBody2D
 # ===== PLAYER MOVEMENT =====
 const SPEED := 50.0
 const SPRINT_MULTIPLIER := 1.6
+@onready var footstep: AudioStreamPlayer2D = $Footstep
 
 # ===== PLAYER ANIMATION =====
 @onready var anim := $AnimatedSprite2D
 var facing := "down"
+
+# ===== FOOTSTEP SOUND SPEED =====
+@export var footstep_multiplier_walk: float = 1.2
+@export var footstep_multiplier_sprint: float = 1.6
 
 # ===== WORLD LIGHTING =====
 @onready var world_environment := get_tree().current_scene.get_node("WorldEnvironment")
@@ -29,8 +34,10 @@ var _gun_flash_id: int = 0
 # ====================
 # INPUTS
 # ====================
+#region
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu_exit"):
+		print("player: get_tree().quit()")
 		get_tree().quit()
 
 	if event.is_action_pressed("menu_restart"):
@@ -43,10 +50,12 @@ func _input(event: InputEvent) -> void:
 		if _is_mouse_over_ui():
 			return
 		shoot()
+#endregion
 
 # ====================
 # MAIN FUNCTIONS
 # ====================
+#region
 func _ready() -> void:
 	_default_cursor_shape = Input.get_current_cursor_shape()
 	Input.set_custom_mouse_cursor(null)
@@ -58,15 +67,12 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_up", "move_down")
 	)
-
 	if dir.length_squared() > 1.0:
 		dir = dir.normalized()
-
 	var speed := SPEED
 	var sprinting := Input.is_key_pressed(KEY_SHIFT)
 	if sprinting:
 		speed *= SPRINT_MULTIPLIER
-
 	velocity = dir * speed
 	move_and_slide()
 
@@ -75,18 +81,32 @@ func _physics_process(delta: float) -> void:
 		anim.speed_scale = 1.0
 		anim.play("idle_" + facing)
 		return
-
 	if abs(dir.x) > abs(dir.y):
 		facing = "right" if dir.x > 0 else "left"
 	else:
 		facing = "down" if dir.y > 0 else "up"
-
 	anim.speed_scale = 1.5 if sprinting else 1.1
 	anim.play("walk_" + facing)
+
+	# ===== FOOTSTEP SOUND LOOP =====
+	var is_moving: bool = dir != Vector2.ZERO
+	if is_moving:
+		var base_multiplier: float = footstep_multiplier_sprint if sprinting else footstep_multiplier_walk
+		#                         SPRINT_VALUE           WALK_VALUE
+		var random_range_min: float = 0.7 if sprinting else 0.6
+		var random_range_max: float = 1.5 if sprinting else 1.4
+		footstep.pitch_scale = base_multiplier * randf_range(random_range_min, random_range_max)
+		if not footstep.playing:
+			footstep.play()
+	else:
+		if footstep.playing:
+			footstep.stop()
+#endregion
 
 # ====================
 # OTHER
 # ====================
+#region
 func restart() -> void:
 	world_environment.fade_out()
 	await get_tree().create_timer(1).timeout
@@ -94,6 +114,7 @@ func restart() -> void:
 
 func gun_toggle() -> void:
 	gun_equipped = !gun_equipped
+	print("player: gun_toggle()\n- ", gun_equipped)
 
 	if gun_equipped:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
@@ -140,3 +161,4 @@ func _is_mouse_over_ui() -> bool:
 		node = node.get_parent()
 
 	return false
+#endregion
