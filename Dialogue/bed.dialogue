@@ -1,0 +1,9 @@
+~ start
+[[It's your bed.|Looks comfy.]]
+Sleep?
+- Yes => sleep_yes
+- No => END
+
+~ sleep_yes
+do GameState.sleep()
+=> END

@@ -5,16 +5,19 @@ class_name SceneTrigger
 extends Area2D
 
 @export var connected_scene: String
-var scene_folder = "res://Scene/"
+@export var scene_folder: String = "res://Scene/"
 
-# ===== WORLD LIGHTING =====
-@onready var world_environment := get_tree().current_scene.get_node("WorldEnvironment")
+@export var world_environment: WorldEnv
+@export var player: Player
 
 func _on_body_entered(body: Node2D) -> void:
-  world_environment.fade_out()
-  await get_tree().create_timer(1).timeout
+	world_environment.fade_out()
+
+	player.sfx("door_open")
+	await get_tree().create_timer(1).timeout
+	player.sfx("door_close")
   
-  var full_path = scene_folder + connected_scene + ".tscn"
-  var scene_tree = get_tree()
-  scene_tree.call_deferred("change_scene_to_file", full_path)
-  print("\nscene_trigger: _transition()\n- Changing scene to: ", full_path)
+	await get_tree().create_timer(0.4).timeout
+	var full_path := scene_folder + connected_scene + ".tscn"
+	print("\nscene_trigger: _transition()\n- Changing scene to: ", full_path)
+	get_tree().call_deferred("change_scene_to_file", full_path)

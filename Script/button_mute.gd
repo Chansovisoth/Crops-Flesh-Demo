@@ -1,24 +1,26 @@
 # Script   : button_mute.gd
-# Function : Button for toggling background music
+# Function : Button for muting BackgroundMusic
 
 extends TextureButton
-@onready var background_music: AudioStreamPlayer2D = $"../../../../../Map/YSort/Player/Audio/BackgroundMusic"
+class_name MuteBackgroundMusic
 
 @export var unmuted_normal: Texture2D = preload("res://Asset/Texture/GUI/tres/unmuted_normal.tres")
 @export var unmuted_pressed: Texture2D = preload("res://Asset/Texture/GUI/tres/unmuted_pressed.tres")
 @export var muted_normal: Texture2D = preload("res://Asset/Texture/GUI/tres/muted_normal.tres")
 @export var muted_pressed: Texture2D = preload("res://Asset/Texture/GUI/tres/muted_pressed.tres")
 
-var muted := false
+func _ready() -> void:
+	GameState.mute_changed.connect(_apply_state)
+	_apply_state()
 
 func _on_pressed() -> void:
-	muted = !muted
-	background_music.volume_db = -80 if muted else 0
-	_apply_visual(true if muted else false)
+	GameState.toggle_muted()
 	print("button_mute: _on_pressed()")
+
+func _apply_state() -> void:
+	var is_muted := GameState.muted
 	
-func _apply_visual(muted: bool) -> void:
-	if muted:
+	if is_muted:
 		texture_normal  = muted_normal
 		texture_hover   = muted_normal
 		texture_pressed = muted_pressed
@@ -26,4 +28,3 @@ func _apply_visual(muted: bool) -> void:
 		texture_normal  = unmuted_normal
 		texture_hover   = unmuted_normal
 		texture_pressed = unmuted_pressed
-	print("button_mute:\n- ", texture_normal.resource_path, "\n- ", texture_hover.resource_path, "\n- ", texture_pressed.resource_path)

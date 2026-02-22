@@ -16,6 +16,19 @@ run/main_scene="uid://b2sju0huulldl"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon_godot.svg"
 
+[autoload]
+
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+GameState="*res://Script/gamestate.gd"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://Dialogue/balloon.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
@@ -72,12 +85,27 @@ action_interact={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 ]
 }
+toggle_mute={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":77,"key_label":0,"unicode":109,"location":0,"echo":false,"script":null)
+]
+}
+toggle_inventory={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://Dialogue/mirror.dialogue", "res://Dialogue/bed.dialogue", "res://Dialogue/music.dialogue", "res://Dialogue/test.dialogue")
 
 [layer_names]
 
 2d_render/layer_1="Ground & Plateau"
 2d_render/layer_2="Prop"
 2d_physics/layer_4="SceneTrigger"
+2d_physics/layer_5="Actionable"
 
 [rendering]
 

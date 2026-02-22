@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://0xeug16nqwyx"
+path="res://.godot/imported/bed.dialogue-bc7279a7ade2cb1c61e247957c1f6345.tres"
+
+[deps]
+
+source_file="res://Dialogue/bed.dialogue"
+dest_files=["res://.godot/imported/bed.dialogue-bc7279a7ade2cb1c61e247957c1f6345.tres"]
+
+[params]
+
+defaults=true

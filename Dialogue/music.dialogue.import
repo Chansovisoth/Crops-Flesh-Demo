@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://btud2cr6j5ind"
+path="res://.godot/imported/music.dialogue-b08d2b0aaf6b0ffe8d2bac18dc182a9e.tres"
+
+[deps]
+
+source_file="res://Dialogue/music.dialogue"
+dest_files=["res://.godot/imported/music.dialogue-b08d2b0aaf6b0ffe8d2bac18dc182a9e.tres"]
+
+[params]
+
+defaults=true

@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://26t8wq24rkcs"]
+[gd_scene load_steps=15 format=3 uid="uid://26t8wq24rkcs"]
 
 [ext_resource type="Script" uid="uid://wxlf0xgrhrnb" path="res://Script/hud_button.gd" id="1_mnrcq"]
-[ext_resource type="Texture2D" uid="uid://dp4m7ct2geygb" path="res://Asset/Texture/GUI/Buttons.png" id="2_2vev5"]
+[ext_resource type="Texture2D" uid="uid://dp4m7ct2geygb" path="res://Asset/Texture/GUI/buttons.png" id="2_2vev5"]
 [ext_resource type="Script" uid="uid://ce3pxskism2wn" path="res://Script/button_restart.gd" id="3_4xxn1"]
 [ext_resource type="Texture2D" uid="uid://djq0jc116na2e" path="res://Asset/Texture/GUI/tres/muted_normal.tres" id="4_3qwin"]
 [ext_resource type="Texture2D" uid="uid://jftrofqmq1sp" path="res://Asset/Texture/GUI/tres/muted_pressed.tres" id="5_7odbf"]
 [ext_resource type="Script" uid="uid://dvevwoji0bysm" path="res://Script/button_mute.gd" id="6_hjpjq"]
+[ext_resource type="Texture2D" uid="uid://btw78kt2tyv1m" path="res://Asset/Texture/GUI/bar_health.png" id="8_3qwin"]
+[ext_resource type="Script" uid="uid://drwaukm5xhrq1" path="res://Scene/bar.gd" id="9_3qwin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kuhwe"]
 atlas = ExtResource("2_2vev5")
@@ -43,9 +45,9 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
-offset_right = 50.0
-offset_bottom = 16.0
-scale = Vector2(3, 3)
+offset_right = 39.0
+offset_bottom = 22.0
+scale = Vector2(3.05, 3.05)
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
 
@@ -81,6 +83,38 @@ unmuted_normal = SubResource("AtlasTexture_fn5fn")
 unmuted_pressed = SubResource("AtlasTexture_vvdge")
 muted_normal = SubResource("AtlasTexture_whtey")
 muted_pressed = SubResource("AtlasTexture_dks8w")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_bottom = 22.0
+grow_horizontal = 0
+scale = Vector2(3.05, 3.05)
+pivot_offset = Vector2(140, 0)
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="HP" type="TextureProgressBar" parent="Control/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+fill_mode = 1
+texture_progress = ExtResource("8_3qwin")
+script = ExtResource("9_3qwin")
+
+[node name="Hunger" type="TextureProgressBar" parent="Control/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+fill_mode = 1
+texture_progress = ExtResource("8_3qwin")
+tint_progress = Color(1.179842, 1.179842, 0, 1)
 
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/RestartButton" to="Control/MarginContainer/HBoxContainer/RestartButton" method="_on_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MuteButton" to="Control/MarginContainer/HBoxContainer/MuteButton" method="_on_pressed"]
