@@ -1,4 +1,4 @@
-[gd_scene load_steps=328 format=4 uid="uid://cbno0hsmv4qdv"]
+[gd_scene load_steps=296 format=4 uid="uid://cbno0hsmv4qdv"]
 
 [ext_resource type="Script" uid="uid://7lbmb8v8ab5g" path="res://Script/scene_fade.gd" id="1_y5lxy"]
 [ext_resource type="Texture2D" uid="uid://bme4yf8riuecs" path="res://Asset/Texture/Environment/Tileset/Floors_Tiles.png" id="2_0ab61"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dyy2d63t074t0" path="res://Asset/Texture/Environment/Tileset/Water_tiles.png" id="7_ll6pr"]
 [ext_resource type="Texture2D" uid="uid://4wd4b8emv343" path="res://Asset/Texture/Environment/Tileset/Wall_Tiles.png" id="8_00i6b"]
 [ext_resource type="PackedScene" uid="uid://bvy0a056yrogn" path="res://Scene/player.tscn" id="9_6e56i"]
+[ext_resource type="PackedScene" uid="uid://cmryynovs6vbm" path="res://Scene/enemy.tscn" id="12_pbc3o"]
 [ext_resource type="AudioStream" uid="uid://b54q7hxc1cam0" path="res://Asset/Audio/Music/ZombieSmash/04 Better Off Undead.mp3" id="28_0ab61"]
 [ext_resource type="Script" uid="uid://giqs8cimywug" path="res://Script/scene_trigger_click.gd" id="28_pbc3o"]
 [ext_resource type="AudioStream" uid="uid://b57tcncm5o8yd" path="res://Asset/Audio/Ambience/Gentle Breeze at Night By Sound-Ideas.ogg" id="28_wjsmb"]
@@ -16,14 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bajr1x4opnxmw" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_01/Size_04.png" id="30_3bny0"]
 [ext_resource type="Texture2D" uid="uid://dupo2ry18gcew" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_01/Size_05.png" id="31_esuyg"]
 [ext_resource type="Texture2D" uid="uid://bxeuly2swxk06" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_03/Size_04.png" id="32_8ucu4"]
-[ext_resource type="Texture2D" uid="uid://csvqddckcgf1u" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Idle.png" id="33_cvrfy"]
 [ext_resource type="Texture2D" uid="uid://b237plpcupyxb" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_03/Size_05.png" id="33_kgoxg"]
-[ext_resource type="Script" uid="uid://dfltmj5amv3q7" path="res://Script/enemy.gd" id="33_uf6o4"]
-[ext_resource type="Texture2D" uid="uid://dwv0s3egnbhy" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Attack1.png" id="33_x3fhw"]
 [ext_resource type="Texture2D" uid="uid://bp3uqm6a6rmdv" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_01/Size_03.png" id="34_kgvdq"]
-[ext_resource type="Texture2D" uid="uid://biqy7v7spscjn" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Dead.png" id="34_uf6o4"]
 [ext_resource type="Texture2D" uid="uid://dda6jya1v6ccq" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_01/Size_02.png" id="35_h3u4f"]
-[ext_resource type="Texture2D" uid="uid://cf5dhfbhrg3ex" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Walk.png" id="36_0phq3"]
 [ext_resource type="Texture2D" uid="uid://dwf8kvt5pnup4" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_02/Size_02.png" id="36_ece2n"]
 [ext_resource type="Texture2D" uid="uid://c6pfxyiuknetp" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_02/Size_03.png" id="37_gskmf"]
 [ext_resource type="Texture2D" uid="uid://cte311mq118m5" path="res://Asset/Texture/Environment/Prop/Static/Trees/Model_02/Size_04.png" id="38_7l56w"]
@@ -3385,213 +3381,6 @@ terrain_set_0/terrain_1/name = "Cliff"
 terrain_set_0/terrain_1/color = Color(0.99999994, 0.04050345, 0.022352884, 1)
 sources/0 = SubResource("TileSetAtlasSource_cvrfy")
 sources/1 = SubResource("TileSetAtlasSource_4of3l")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vmi60"]
-radius = 19.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hti8k"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ta8wi"]
-light_mode = 2
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ncfgc"]
-atlas = ExtResource("33_x3fhw")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_flo70"]
-atlas = ExtResource("33_x3fhw")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3q40k"]
-atlas = ExtResource("33_x3fhw")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqv1g"]
-atlas = ExtResource("33_x3fhw")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fk7de"]
-atlas = ExtResource("33_x3fhw")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_swl7y"]
-atlas = ExtResource("33_x3fhw")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7jppn"]
-atlas = ExtResource("34_uf6o4")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y5lxy"]
-atlas = ExtResource("34_uf6o4")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ab61"]
-atlas = ExtResource("34_uf6o4")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_37xso"]
-atlas = ExtResource("34_uf6o4")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0sia"]
-atlas = ExtResource("34_uf6o4")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_soc0q"]
-atlas = ExtResource("34_uf6o4")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4of3l"]
-atlas = ExtResource("33_cvrfy")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vp2au"]
-atlas = ExtResource("33_cvrfy")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3fhw"]
-atlas = ExtResource("33_cvrfy")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uf6o4"]
-atlas = ExtResource("33_cvrfy")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0phq3"]
-atlas = ExtResource("33_cvrfy")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n16x2"]
-atlas = ExtResource("33_cvrfy")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y7bks"]
-atlas = ExtResource("36_0phq3")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0jksm"]
-atlas = ExtResource("36_0phq3")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ll6pr"]
-atlas = ExtResource("36_0phq3")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_00i6b"]
-atlas = ExtResource("36_0phq3")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n4quh"]
-atlas = ExtResource("36_0phq3")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3cdja"]
-atlas = ExtResource("36_0phq3")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fk7de"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ncfgc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_flo70")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3q40k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqv1g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fk7de")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_swl7y")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7jppn")
-}],
-"loop": false,
-"name": &"dead",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y5lxy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ab61")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_37xso")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j0sia")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_soc0q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7jppn")
-}],
-"loop": true,
-"name": &"dying",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4of3l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vp2au")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x3fhw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uf6o4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0phq3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n16x2")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y7bks")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0jksm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ll6pr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_00i6b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n4quh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3cdja")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5c3ep"]
 polygon = PackedVector2Array(-15, -1, -15, 2, -8, 2, -8, 5, 8, 5, 8, 2, 11, 2, 11, -1, 8, -1, 8, -2, -8, -2, -8, -1)
@@ -8166,7 +7955,7 @@ tile_set = SubResource("TileSet_kuhwe")
 y_sort_enabled = true
 
 [node name="Player" parent="Map/YSort" instance=ExtResource("9_6e56i")]
-position = Vector2(144, 272)
+position = Vector2(440, 10)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
 stream = ExtResource("28_0ab61")
@@ -8177,27 +7966,17 @@ autoplay = true
 stream = ExtResource("28_wjsmb")
 autoplay = true
 
-[node name="Enemy" type="CharacterBody2D" parent="Map/YSort"]
-position = Vector2(160, 304)
-script = ExtResource("33_uf6o4")
+[node name="Enemy" parent="Map/YSort" instance=ExtResource("12_pbc3o")]
+position = Vector2(280, 8)
 
-[node name="AttackArea" type="Area2D" parent="Map/YSort/Enemy"]
+[node name="Enemy3" parent="Map/YSort" instance=ExtResource("12_pbc3o")]
+position = Vector2(104, -8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/YSort/Enemy/AttackArea"]
-shape = SubResource("CircleShape2D_vmi60")
+[node name="Enemy4" parent="Map/YSort" instance=ExtResource("12_pbc3o")]
+position = Vector2(48, -64)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/YSort/Enemy"]
-shape = SubResource("CircleShape2D_hti8k")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Map/YSort/Enemy"]
-self_modulate = Color(0.30112356, 0.3344454, 0.48319376, 1)
-light_mask = 32
-material = SubResource("CanvasItemMaterial_ta8wi")
-position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_fk7de")
-animation = &"attack"
-frame = 2
-frame_progress = 0.88872457
+[node name="Enemy5" parent="Map/YSort" instance=ExtResource("12_pbc3o")]
+position = Vector2(64, 80)
 
 [node name="PropTree" type="TileMapLayer" parent="Map/YSort"]
 light_mask = 2

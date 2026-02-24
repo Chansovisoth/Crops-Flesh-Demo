@@ -4,7 +4,7 @@
 extends Node2D
 
 @export var item: InventoryItem
-@export var auto_equip_on_pickup: bool = false
+@export var auto_equip_on_pickup: bool = true
 
 @onready var pickable_area: Area2D = $PickableArea
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cmryynovs6vbm"]
+[gd_scene load_steps=34 format=3 uid="uid://cmryynovs6vbm"]
 
 [ext_resource type="Script" uid="uid://dfltmj5amv3q7" path="res://Script/enemy.gd" id="1_vmi60"]
 [ext_resource type="Texture2D" uid="uid://dwv0s3egnbhy" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Attack1.png" id="2_hti8k"]
@@ -10,6 +10,9 @@
 radius = 19.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hti8k"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ta8wi"]
+light_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ncfgc"]
 atlas = ExtResource("2_hti8k")
@@ -222,7 +225,11 @@ shape = SubResource("CircleShape2D_vmi60")
 shape = SubResource("CircleShape2D_hti8k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.30112356, 0.3344454, 0.48319376, 1)
+light_mask = 32
+material = SubResource("CanvasItemMaterial_ta8wi")
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_fk7de")
 animation = &"attack"
-frame_progress = 0.82880974
+frame = 2
+frame_progress = 0.88872457

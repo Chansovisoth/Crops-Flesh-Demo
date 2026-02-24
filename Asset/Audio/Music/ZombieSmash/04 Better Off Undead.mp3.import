@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b54q7hxc1cam0"
+path="res://.godot/imported/04 Better Off Undead.mp3-04464805b0b8014c57105034808c5bfa.mp3str"
+
+[deps]
+
+source_file="res://Asset/Audio/Music/ZombieSmash/04 Better Off Undead.mp3"
+dest_files=["res://.godot/imported/04 Better Off Undead.mp3-04464805b0b8014c57105034808c5bfa.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
