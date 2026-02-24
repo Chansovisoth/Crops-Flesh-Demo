@@ -119,7 +119,7 @@ var item_gun_taken := false
 	#await get_tree().create_timer(1.0).timeout
 	#get_tree().reload_current_scene()
 	#
-#func sleep() -> void:
-	#var world_environment := _get_world_environment()
-	#world_environment.call("fade_sleep")
+func sleep() -> void:
+	var world_environment := _get_world_environment()
+	world_environment.call("fade_sleep")
 #endregion
