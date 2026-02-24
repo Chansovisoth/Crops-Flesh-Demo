@@ -3,8 +3,12 @@
 
 extends Node
 
+var player: Player # For bypassing
+var inventory: Inventory
+
 var dialogue_active := false
 var muted := false
+var player_dead := false
 var current_scene := ""
 var player_stats := {
 	"display_name": "Klaude",
@@ -42,9 +46,16 @@ func set_display_name(value: String) -> void:
 	stats_update.emit()
 
 func set_hp(value: int) -> void:
+	if player_dead:
+		return # already dead, ignore further hp updates
+
 	var hp_max: int = player_stats["hp_max"]
 	player_stats["hp"] = clampi(value, 0, hp_max)
 	stats_update.emit()
+
+	if player_stats["hp"] <= 0 and player and not player_dead:
+		player_dead = true
+		player.death()
 
 func set_hunger(value: int) -> void:
 	var hunger_max: int = player_stats["hunger_max"]
@@ -52,10 +63,22 @@ func set_hunger(value: int) -> void:
 	stats_update.emit()
 
 func change_hp(delta: int) -> void:
-	set_hp(player_stats["hp"] + delta)
+	var old_hp = player_stats["hp"]
+	set_hp(old_hp + delta)
+	if delta < 0 and player:
+		if player_stats["hp"]>= 1 and player and not player_dead:
+			player.hurt()
 
 func change_hunger(delta: int) -> void:
-	set_hunger(player_stats["hunger"] + delta)
+	var old_hunger = player_stats["hunger"]
+	set_hunger(old_hunger + delta)
+	if delta < 0 and player:
+		player.sfx("hungry")
+
+func reset_stats() -> void:
+	player_dead = false
+	set_hp(player_stats["hp"] + 100)
+	set_hunger(player_stats["hunger"] + 100)
 #endregion - Player Stats
 
 #region - Background Music 
@@ -81,17 +104,22 @@ func _apply_mute() -> void:
 #endregion - Background Music 
 #endregion
 
+#region - Items
+var item_gun_taken := false
+#endregion - Items
 # ====================
 # OTHER 
 # ====================
 #region
-func restart() -> void:
-	var world_environment := _get_world_environment()
-	world_environment.call("fade_out")
-	await get_tree().create_timer(1.0).timeout
-	get_tree().reload_current_scene()
-	
-func sleep() -> void:
-	var world_environment := _get_world_environment()
-	world_environment.call("fade_sleep")
+#func restart() -> void:
+	#reset_stats()
+	#inventory.clear()
+	#var world_environment := _get_world_environment()
+	#world_environment.call("fade_out")
+	#await get_tree().create_timer(1.0).timeout
+	#get_tree().reload_current_scene()
+	#
+#func sleep() -> void:
+	#var world_environment := _get_world_environment()
+	#world_environment.call("fade_sleep")
 #endregion

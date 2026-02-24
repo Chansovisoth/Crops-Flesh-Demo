@@ -1,20 +1,15 @@
-[gd_scene load_steps=198 format=4 uid="uid://b2sju0huulldl"]
+[gd_scene load_steps=194 format=4 uid="uid://b2sju0huulldl"]
 
 [ext_resource type="PackedScene" uid="uid://bvy0a056yrogn" path="res://Scene/player.tscn" id="1_no814"]
 [ext_resource type="Script" uid="uid://7lbmb8v8ab5g" path="res://Script/scene_fade.gd" id="1_thkxx"]
 [ext_resource type="AudioStream" uid="uid://caybivckd6lkj" path="res://Asset/Audio/Music/music_for_video-just-relax-11157.mp3" id="3_4p8lb"]
 [ext_resource type="PackedScene" uid="uid://26t8wq24rkcs" path="res://Scene/hud.tscn" id="4_4p8lb"]
-[ext_resource type="AudioStream" uid="uid://bnjss8a2qjjff" path="res://Asset/Audio/Ambience/freesound_community-aachen_burning-fireplace-crackling-fire-soundswav-14561.mp3" id="4_xbrjj"]
 [ext_resource type="Texture2D" uid="uid://sl1bb3p3eskt" path="res://Asset/Texture/Environment/Structure/Props.png" id="5_afcgt"]
-[ext_resource type="AudioStream" uid="uid://c5yivgbv68g55" path="res://Asset/Audio/SFX/gun_shoot.mp3" id="5_ncydq"]
-[ext_resource type="AudioStream" uid="uid://di3woo7ec5wid" path="res://Asset/Audio/SFX/door_open.mp3" id="6_dj0hx"]
 [ext_resource type="Texture2D" uid="uid://bbk63ebxq5pna" path="res://Asset/Texture/Environment/Structure/Roofs.png" id="6_hh6xh"]
-[ext_resource type="AudioStream" uid="uid://djf1ikjpqr8o3" path="res://Asset/Audio/SFX/door_close.mp3" id="7_65eq1"]
 [ext_resource type="Texture2D" uid="uid://b113s3cuk84as" path="res://Asset/Texture/Environment/Structure/Shadows.png" id="7_xbrjj"]
 [ext_resource type="Texture2D" uid="uid://c6y0l6m3g2wjx" path="res://Asset/Texture/Environment/Structure/Walls.png" id="8_ncydq"]
 [ext_resource type="Texture2D" uid="uid://dsdg2avdi1qqj" path="res://Asset/Texture/Environment/Prop/Static/TopDownHouse_FurnitureState2.png" id="9_afcgt"]
 [ext_resource type="Script" uid="uid://bwov7mxhriuad" path="res://Script/scene_trigger.gd" id="9_albdu"]
-[ext_resource type="AudioStream" uid="uid://bh2nchg6krdk8" path="res://Asset/Audio/SFX/writing.mp3" id="9_c8uwk"]
 [ext_resource type="Texture2D" uid="uid://bwuyrkl7203oy" path="res://Asset/Texture/Environment/Prop/Static/TopDownHouse_FloorsAndWalls.png" id="10_hh6xh"]
 [ext_resource type="Texture2D" uid="uid://febe02jrysnc" path="res://Asset/Texture/Environment/Prop/Static/Furniture.png" id="11_xbrjj"]
 [ext_resource type="Texture2D" uid="uid://bcpqu6my2qb7r" path="res://Asset/Texture/Environment/Prop/Static/TopDownHouse_SmallItems.png" id="13_albdu"]
@@ -22,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://yqjgckshprrx" path="res://Dialogue/mirror.dialogue" id="16_rngmo"]
 [ext_resource type="Resource" uid="uid://0xeug16nqwyx" path="res://Dialogue/bed.dialogue" id="17_ox16j"]
 [ext_resource type="Resource" uid="uid://btud2cr6j5ind" path="res://Dialogue/music.dialogue" id="18_tcna0"]
+[ext_resource type="PackedScene" uid="uid://bds7137r5tjt4" path="res://Scene/item_gun.tscn" id="26_hugsp"]
 
 [sub_resource type="Environment" id="Environment_4p8lb"]
 background_mode = 3
@@ -2781,38 +2777,10 @@ y_sort_enabled = true
 [node name="Player" parent="Map/YSort" instance=ExtResource("1_no814")]
 position = Vector2(584, 61)
 
-[node name="Audio" type="Node2D" parent="Map/YSort/Player"]
-visible = false
-
-[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player/Audio"]
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
 stream = ExtResource("3_4p8lb")
 volume_db = -10.0
 autoplay = true
-
-[node name="Ambience" type="AudioStreamPlayer2D" parent="Map/YSort/Player/Audio"]
-stream = ExtResource("4_xbrjj")
-volume_db = -8.0
-autoplay = true
-
-[node name="GunShoot" type="AudioStreamPlayer2D" parent="Map/YSort/Player/Audio"]
-stream = ExtResource("5_ncydq")
-volume_db = 10.0
-max_distance = 500.0
-
-[node name="DoorOpen" type="AudioStreamPlayer2D" parent="Map/YSort/Player/Audio"]
-stream = ExtResource("6_dj0hx")
-volume_db = -5.0
-max_distance = 500.0
-
-[node name="DoorClose" type="AudioStreamPlayer2D" parent="Map/YSort/Player/Audio"]
-stream = ExtResource("7_65eq1")
-volume_db = -7.0
-max_distance = 500.0
-
-[node name="Writing" type="AudioStreamPlayer2D" parent="Map/YSort/Player/Audio"]
-stream = ExtResource("9_c8uwk")
-volume_db = -3.0
-max_distance = 500.0
 
 [node name="PropStructure" type="TileMapLayer" parent="Map/YSort"]
 light_mask = 2
@@ -2844,8 +2812,11 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAZAPv/BQAAABAAAQAgAP//CAAGAAMAAQAfAP//CAAHAAEAAgAeAP//CAABAAMAAgAVAAMACAAHAAIAAgAWAAMACAAGAAIAAgA=")
 tile_set = SubResource("TileSet_dj0hx")
 
+[node name="ItemGun" parent="Map" instance=ExtResource("26_hugsp")]
+position = Vector2(407, -69)
+
 [node name="SceneTrigger" type="Area2D" parent="Map" node_paths=PackedStringArray("world_environment", "player")]
-position = Vector2(584, 72)
+position = Vector2(584, 74)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("9_albdu")

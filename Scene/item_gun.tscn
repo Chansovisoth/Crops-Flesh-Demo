@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bds7137r5tjt4"]
+
+[ext_resource type="Script" uid="uid://by7ac6bgqsy16" path="res://Script/item_gun.gd" id="1_6btto"]
+[ext_resource type="Texture2D" uid="uid://dcyx4g3dericd" path="res://Asset/Texture/Item/pistol-16px.png" id="1_kn2s5"]
+[ext_resource type="Resource" uid="uid://db27lspoqqm81" path="res://Inventory/Items/gun.tres" id="2_m6tk2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6btto"]
+size = Vector2(16, 29.333334)
+
+[node name="ItemGun" type="Node2D"]
+script = ExtResource("1_6btto")
+item = ExtResource("2_m6tk2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kn2s5")
+
+[node name="PickableArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
+position = Vector2(0, 10)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_6btto")
+
+[connection signal="body_entered" from="PickableArea" to="." method="_on_body_entered"]

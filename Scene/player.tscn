@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bvy0a056yrogn"]
+[gd_scene load_steps=50 format=3 uid="uid://bvy0a056yrogn"]
 
 [ext_resource type="Script" uid="uid://cvx8gbcd6xysc" path="res://Script/player.gd" id="1_1vqkc"]
 [ext_resource type="Resource" uid="uid://cwo7pq827i1qd" path="res://Inventory/inventory_player1.tres" id="2_1vqkc"]
@@ -22,7 +22,15 @@
 [ext_resource type="Texture2D" uid="uid://7ulplr1l85m4" path="res://Asset/Texture/Effect/flashlight_triangle.png" id="18_71nu8"]
 [ext_resource type="Script" uid="uid://btl8mmj0fnlrk" path="res://Script/flashlight.gd" id="19_dfe5c"]
 [ext_resource type="AudioStream" uid="uid://dyrv5gdf0s57h" path="res://Asset/Audio/SFX/footstep_concrete.mp3" id="20_7d6xm"]
-[ext_resource type="PackedScene" uid="uid://bar4stlin2g7u" path="res://Scene/inventoryui.tscn" id="22_1vqkc"]
+[ext_resource type="PackedScene" uid="uid://bar4stlin2g7u" path="res://Scene/inventory_ui.tscn" id="22_1vqkc"]
+[ext_resource type="Script" uid="uid://rg4h0sunrx7u" path="res://Script/screen_shake.gd" id="22_jx4b7"]
+[ext_resource type="AudioStream" uid="uid://c5yivgbv68g55" path="res://Asset/Audio/SFX/gun_shoot.mp3" id="27_yosb2"]
+[ext_resource type="AudioStream" uid="uid://di3woo7ec5wid" path="res://Asset/Audio/SFX/door_open.mp3" id="28_1axnv"]
+[ext_resource type="AudioStream" uid="uid://djf1ikjpqr8o3" path="res://Asset/Audio/SFX/door_close.mp3" id="29_bk8bd"]
+[ext_resource type="AudioStream" uid="uid://bh2nchg6krdk8" path="res://Asset/Audio/SFX/writing.mp3" id="30_cvqm3"]
+[ext_resource type="AudioStream" uid="uid://cvja0uc4f14rq" path="res://Asset/Audio/SFX/hungry.mp3" id="31_71nu8"]
+[ext_resource type="AudioStream" uid="uid://bk88juyq828lr" path="res://Asset/Audio/SFX/hurt1.mp3" id="32_dfe5c"]
+[ext_resource type="AudioStream" uid="uid://d135gfes5r6i6" path="res://Asset/Audio/SFX/death.mp3" id="33_8wn1n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7d6xm"]
 bg_color = Color(0, 0, 0, 0.2509804)
@@ -467,21 +475,24 @@ gradient = SubResource("Gradient_c8uwk")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inventort_ui")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "inventort_ui")]
 collision_layer = 9
 script = ExtResource("1_1vqkc")
+camera = NodePath("Camera2D")
 inventory = ExtResource("2_1vqkc")
-inventort_ui = NodePath("InventoryUI")
+inventort_ui = NodePath("CanvasLayer/InventoryUI")
 
 [node name="NameTag" type="Node2D" parent="."]
 position = Vector2(-4, -41.000004)
 scale = Vector2(0.4, 0.4)
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="NameTag"]
 offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="NameTag/MarginContainer"]
 layout_mode = 2
@@ -539,6 +550,7 @@ energy = 0.2
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 0.8
+shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_v456u")
 metadata/_edit_lock_ = true
 
@@ -546,7 +558,8 @@ metadata/_edit_lock_ = true
 position = Vector2(0, -9.999985)
 scale = Vector2(3.2549806, 2.375)
 color = Color(0.7606387, 0.45481777, 3.85046e-07, 1)
-energy = 1.84
+energy = 1.6
+range_item_cull_mask = 33
 shadow_enabled = true
 shadow_filter = 1
 texture = ExtResource("18_71nu8")
@@ -581,9 +594,11 @@ shadow_filter_smooth = 1.0
 texture = SubResource("GradientTexture2D_v456u")
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_node")]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+script = ExtResource("22_jx4b7")
+follow_node = NodePath("..")
 metadata/_edit_lock_ = true
 
 [node name="Footstep" type="AudioStreamPlayer2D" parent="."]
@@ -592,6 +607,49 @@ volume_db = -9.0
 metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
 
-[node name="InventoryUI" parent="." instance=ExtResource("22_1vqkc")]
+[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("22_1vqkc")]
+offset_left = -427.66666
+offset_top = -188.0
+offset_right = -339.66666
+offset_bottom = -116.0
+
+[node name="SFX" type="Node2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
+
+[node name="GunShoot" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("27_yosb2")
+volume_db = 10.0
+max_distance = 500.0
+
+[node name="DoorOpen" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("28_1axnv")
+volume_db = -5.0
+max_distance = 500.0
+
+[node name="DoorClose" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("29_bk8bd")
+volume_db = -7.0
+max_distance = 500.0
+
+[node name="Writing" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("30_cvqm3")
+volume_db = -10.0
+max_distance = 500.0
+
+[node name="Hungry" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("31_71nu8")
+volume_db = -8.0
+max_distance = 500.0
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("32_dfe5c")
+volume_db = -20.0
+max_distance = 500.0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("33_8wn1n")
+max_distance = 500.0
