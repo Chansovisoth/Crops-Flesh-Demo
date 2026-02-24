@@ -78,6 +78,10 @@ This repository includes an **Alpha version release** demonstrating:
 - Lighting effects
 - HUD buttons
 
+AI Disclosure:
+- AI model used: ChatGPT
+- Fixed faulty scripts and help speed up the development process, helped me learned game concepts and facts
+
 This is all I got for now. More to see in the future. :p
 
 
