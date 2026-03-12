@@ -5,19 +5,21 @@
 [ext_resource type="Resource" uid="uid://db27lspoqqm81" path="res://Inventory/Items/gun.tres" id="2_m6tk2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6btto"]
-size = Vector2(16, 29.333334)
+size = Vector2(13.333334, 13.333334)
 
 [node name="ItemGun" type="Node2D"]
+z_as_relative = false
 script = ExtResource("1_6btto")
 item = ExtResource("2_m6tk2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
 texture = ExtResource("1_kn2s5")
 
 [node name="PickableArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
-position = Vector2(0, 10)
+position = Vector2(-1.9999999, -2)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_6btto")
 

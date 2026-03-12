@@ -1,113 +1,112 @@
-[gd_scene load_steps=34 format=3 uid="uid://cmryynovs6vbm"]
+[gd_scene load_steps=39 format=3 uid="uid://b1v586mlsj8jd"]
 
-[ext_resource type="Script" uid="uid://dfltmj5amv3q7" path="res://Script/enemy.gd" id="1_vmi60"]
-[ext_resource type="Texture2D" uid="uid://dwv0s3egnbhy" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Attack1.png" id="2_hti8k"]
-[ext_resource type="Texture2D" uid="uid://biqy7v7spscjn" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Dead.png" id="3_44hyy"]
-[ext_resource type="Texture2D" uid="uid://csvqddckcgf1u" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Idle.png" id="4_0qcj2"]
-[ext_resource type="Texture2D" uid="uid://cf5dhfbhrg3ex" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Walk.png" id="5_5op34"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vmi60"]
-radius = 19.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hti8k"]
+[ext_resource type="Script" uid="uid://dtpbmss8m56a7" path="res://Script/enemy.gd" id="1_cogd5"]
+[ext_resource type="Texture2D" uid="uid://dwv0s3egnbhy" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Attack1.png" id="2_e6lwa"]
+[ext_resource type="Texture2D" uid="uid://biqy7v7spscjn" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Dead.png" id="3_3m5gj"]
+[ext_resource type="Texture2D" uid="uid://csvqddckcgf1u" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Idle.png" id="4_ytgsl"]
+[ext_resource type="Texture2D" uid="uid://cf5dhfbhrg3ex" path="res://Asset/Texture/Character/Zombie/Zombie_Default_Walk.png" id="5_kswis"]
+[ext_resource type="AudioStream" uid="uid://bmrn7sjgjv86m" path="res://Asset/Audio/SFX/zombie.mp3" id="6_e6lwa"]
+[ext_resource type="AudioStream" uid="uid://b3fdy54rpd16q" path="res://Asset/Audio/SFX/punch_light.mp3" id="7_3m5gj"]
+[ext_resource type="AudioStream" uid="uid://x425p07vh2ev" path="res://Asset/Audio/SFX/punch_splatter.mp3" id="8_kswis"]
+[ext_resource type="AudioStream" uid="uid://c0w0avv42vp16" path="res://Asset/Audio/SFX/punch_splatter2.mp3" id="9_chcym"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ta8wi"]
 light_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ncfgc"]
-atlas = ExtResource("2_hti8k")
+atlas = ExtResource("2_e6lwa")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_flo70"]
-atlas = ExtResource("2_hti8k")
+atlas = ExtResource("2_e6lwa")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3q40k"]
-atlas = ExtResource("2_hti8k")
+atlas = ExtResource("2_e6lwa")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqv1g"]
-atlas = ExtResource("2_hti8k")
+atlas = ExtResource("2_e6lwa")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fk7de"]
-atlas = ExtResource("2_hti8k")
+atlas = ExtResource("2_e6lwa")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swl7y"]
-atlas = ExtResource("2_hti8k")
+atlas = ExtResource("2_e6lwa")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7jppn"]
-atlas = ExtResource("3_44hyy")
+atlas = ExtResource("3_3m5gj")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5lxy"]
-atlas = ExtResource("3_44hyy")
+atlas = ExtResource("3_3m5gj")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ab61"]
-atlas = ExtResource("3_44hyy")
+atlas = ExtResource("3_3m5gj")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37xso"]
-atlas = ExtResource("3_44hyy")
+atlas = ExtResource("3_3m5gj")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0sia"]
-atlas = ExtResource("3_44hyy")
+atlas = ExtResource("3_3m5gj")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_soc0q"]
-atlas = ExtResource("3_44hyy")
+atlas = ExtResource("3_3m5gj")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4of3l"]
-atlas = ExtResource("4_0qcj2")
+atlas = ExtResource("4_ytgsl")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vp2au"]
-atlas = ExtResource("4_0qcj2")
+atlas = ExtResource("4_ytgsl")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3fhw"]
-atlas = ExtResource("4_0qcj2")
+atlas = ExtResource("4_ytgsl")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uf6o4"]
-atlas = ExtResource("4_0qcj2")
+atlas = ExtResource("4_ytgsl")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0phq3"]
-atlas = ExtResource("4_0qcj2")
+atlas = ExtResource("4_ytgsl")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n16x2"]
-atlas = ExtResource("4_0qcj2")
+atlas = ExtResource("4_ytgsl")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y7bks"]
-atlas = ExtResource("5_5op34")
+atlas = ExtResource("5_kswis")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jksm"]
-atlas = ExtResource("5_5op34")
+atlas = ExtResource("5_kswis")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ll6pr"]
-atlas = ExtResource("5_5op34")
+atlas = ExtResource("5_kswis")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00i6b"]
-atlas = ExtResource("5_5op34")
+atlas = ExtResource("5_kswis")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4quh"]
-atlas = ExtResource("5_5op34")
+atlas = ExtResource("5_kswis")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3cdja"]
-atlas = ExtResource("5_5op34")
+atlas = ExtResource("5_kswis")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fk7de"]
@@ -213,16 +212,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5op34"]
+size = Vector2(20, 58)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r6llc"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmi60"]
+radius = 19.0
+
 [node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_vmi60")
-
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource("CircleShape2D_vmi60")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_hti8k")
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_cogd5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0.30112356, 0.3344454, 0.48319376, 1)
@@ -230,6 +232,51 @@ light_mask = 32
 material = SubResource("CanvasItemMaterial_ta8wi")
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_fk7de")
-animation = &"attack"
-frame = 2
-frame_progress = 0.88872457
+animation = &"dead"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_5op34")
+
+[node name="EnemyCollision" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCollision"]
+shape = SubResource("CircleShape2D_r6llc")
+disabled = true
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_vmi60")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="Zombie" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_e6lwa")
+volume_db = -25.0
+autoplay = true
+
+[node name="Punch" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("7_3m5gj")
+volume_db = -5.0
+pitch_scale = 0.9
+autoplay = true
+
+[node name="Death1" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("8_kswis")
+volume_db = -14.0
+pitch_scale = 0.9
+autoplay = true
+
+[node name="Death2" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("9_chcym")
+volume_db = -14.0
+pitch_scale = 0.9
+autoplay = true

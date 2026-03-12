@@ -6,8 +6,8 @@ signal update
 
 @export var slots: Array[InventorySlot]
 
-func _ready() -> void:
-	GameState.inventory = self # FOR BYPASS
+#func _ready() -> void:
+	#GameState.inventory = self # FOR BYPASS
 
 func insert(item: InventoryItem):
 	var itemslots = slots.filter(func(slot): return slot.item == item)

@@ -1,0 +1,238 @@
+[gd_scene load_steps=22 format=3 uid="uid://d1mgj4s2haock"]
+
+[ext_resource type="AudioStream" uid="uid://caybivckd6lkj" path="res://Asset/Audio/Music/music_for_video-just-relax-11157.mp3" id="1_rlqmq"]
+[ext_resource type="Script" uid="uid://uomoaegtyhkn" path="res://Script/start_replay_button.gd" id="8_tpsj8"]
+[ext_resource type="Script" uid="uid://wxlf0xgrhrnb" path="res://Script/hud_button.gd" id="24_lx8n7"]
+[ext_resource type="Texture2D" uid="uid://djq0jc116na2e" path="res://Asset/Texture/GUI/tres/muted_normal.tres" id="25_yciwy"]
+[ext_resource type="Texture2D" uid="uid://jftrofqmq1sp" path="res://Asset/Texture/GUI/tres/muted_pressed.tres" id="26_vffab"]
+[ext_resource type="Script" uid="uid://dvevwoji0bysm" path="res://Script/button_mute.gd" id="27_5wwfn"]
+[ext_resource type="Texture2D" uid="uid://dp4m7ct2geygb" path="res://Asset/Texture/GUI/buttons.png" id="28_hdql1"]
+[ext_resource type="Script" uid="uid://c288ac4mfj3xf" path="res://Script/start_exit_button.gd" id="30_mfj5w"]
+[ext_resource type="PackedScene" uid="uid://cqo3o8nuqth6i" path="res://Scene/start_menu.tscn" id="30_pvcf7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn5fn"]
+atlas = ExtResource("28_hdql1")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvdge"]
+atlas = ExtResource("28_hdql1")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whtey"]
+atlas = ExtResource("28_hdql1")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dks8w"]
+atlas = ExtResource("28_hdql1")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="SystemFont" id="SystemFont_ynuc6"]
+font_names = PackedStringArray("Fredoka")
+font_weight = 600
+hinting = 2
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+msdf_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_brix2"]
+line_spacing = -7.0
+font = SubResource("SystemFont_ynuc6")
+font_size = 17
+font_color = Color(1, 1, 1, 0.8745098)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuhwe"]
+atlas = ExtResource("28_hdql1")
+region = Rect2(0, 192, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afcgt"]
+atlas = ExtResource("28_hdql1")
+region = Rect2(0, 208, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mua1"]
+atlas = ExtResource("28_hdql1")
+region = Rect2(0, 224, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y3la"]
+atlas = ExtResource("28_hdql1")
+region = Rect2(0, 240, 48, 16)
+
+[sub_resource type="SystemFont" id="SystemFont_7odbf"]
+font_names = PackedStringArray("Fredoka")
+hinting = 2
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_7odbf"]
+font = SubResource("SystemFont_7odbf")
+font_size = 18
+font_color = Color(1, 1, 1, 0.8745098)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="StartMenu" type="Node2D"]
+
+[node name="Map" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="YSort" type="Node2D" parent="Map"]
+y_sort_enabled = true
+
+[node name="Player" type="Node2D" parent="Map/YSort"]
+position = Vector2(464, 856)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
+stream = ExtResource("1_rlqmq")
+volume_db = -6.0
+pitch_scale = 1.4
+autoplay = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="HUD"]
+position = Vector2(2000, 104)
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Control"]
+layout_mode = 1
+offset_right = 39.0
+offset_bottom = 22.0
+scale = Vector2(3.05, 3.05)
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+script = ExtResource("24_lx8n7")
+
+[node name="MuteButton" type="TextureButton" parent="HUD/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+action_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource("25_yciwy")
+texture_pressed = ExtResource("26_vffab")
+texture_hover = ExtResource("25_yciwy")
+script = ExtResource("27_5wwfn")
+unmuted_normal = SubResource("AtlasTexture_fn5fn")
+unmuted_pressed = SubResource("AtlasTexture_vvdge")
+muted_normal = SubResource("AtlasTexture_whtey")
+muted_pressed = SubResource("AtlasTexture_dks8w")
+
+[node name="MarginContainer4" type="MarginContainer" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -41.5
+offset_right = 49.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+pivot_offset = Vector2(49.000008, 34.307877)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 3
+script = ExtResource("24_lx8n7")
+
+[node name="Logo" type="Label" parent="HUD/Control/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "You
+Survived!"
+label_settings = SubResource("LabelSettings_brix2")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/Control/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+script = ExtResource("24_lx8n7")
+
+[node name="ReplayButton" type="TextureButton" parent="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("AtlasTexture_kuhwe")
+texture_pressed = SubResource("AtlasTexture_afcgt")
+texture_hover = SubResource("AtlasTexture_kuhwe")
+script = ExtResource("8_tpsj8")
+next_scene = ExtResource("30_pvcf7")
+
+[node name="ExitButton" type="TextureButton" parent="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("AtlasTexture_1mua1")
+texture_pressed = SubResource("AtlasTexture_3y3la")
+texture_hover = SubResource("AtlasTexture_1mua1")
+script = ExtResource("30_mfj5w")
+
+[node name="MarginContainer3" type="MarginContainer" parent="HUD/Control"]
+modulate = Color(1, 1, 1, 0.69411767)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -96.0
+offset_right = -24.0
+offset_bottom = -23.625
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="HUD/Control/MarginContainer3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "TIPS:
+ [G]      Toggle gun
+ [R]       Reload
+ [M]      Toggle music
+ [TAB]  Toggle Inventory"
+label_settings = SubResource("LabelSettings_7odbf")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="HUD/Control/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "
+
+
+
+Demo v1.0.0"
+label_settings = SubResource("LabelSettings_7odbf")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="HUD/Control/MarginContainer/HBoxContainer/MuteButton" to="HUD/Control/MarginContainer/HBoxContainer/MuteButton" method="_on_pressed"]
+[connection signal="pressed" from="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2/ReplayButton" to="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2/ReplayButton" method="_on_pressed"]
+[connection signal="pressed" from="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2/ExitButton" to="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2/ExitButton" method="_on_pressed"]

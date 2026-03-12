@@ -12,6 +12,9 @@ const SPRINT_MULTIPLIER := 1.6
 @onready var anim_player: AnimationPlayer = $AnimationPlayer # for walking & sfx
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D # for red modulate
 var facing := "down"
+var _is_dead: bool = false
+var _is_invincible: bool = false
+var _is_invincible_duration: float = 2.0
 
 # ===== FOOTSTEP SOUND SPEED =====
 @export var footstep_multiplier_walk: float = 1.2
@@ -19,19 +22,19 @@ var facing := "down"
 var _was_sprinting: bool = false
 
 # ===== CAMERA =====
-@export var camera: PlayerCamera
+@onready var camera: PlayerCamera = $Camera2D
+#@export var camera: PlayerCamera
 
 # ===== WORLD LIGHTING =====
 @onready var world_environment: WorldEnv = $"../../../WorldEnvironment"
 #@export var world_environment: WorldEnv
 
-# ===== CURSOR GUN =====
+# ===== GUN =====
+@onready var gun: Node2D = $Gun
 @export var cursor_gun: Texture2D = preload("res://Asset/Texture/GUI/cursor_gun.png")
 const CURSOR_GUN_OFFSET := Vector2(64, 64)
 var gun_equipped := false
 var _default_cursor_shape: Input.CursorShape
-
-# ===== GUN FLASH =====
 @onready var gun_flash: PointLight2D = $"PointLight2D (Gun Flash)"
 @export var gun_flash_duration: float = 0.04
 var _gun_flash_id: int = 0
@@ -58,14 +61,17 @@ var _gun_flash_id: int = 0
 # INPUTS
 # ====================
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("menu_exit"):
-		print("player: get_tree().quit()")
-		get_tree().quit()
+	if _is_dead:
+		return
+
+	#if event.is_action_pressed("menu_exit"):
+		#print("player: get_tree().quit()")
+		#get_tree().quit()
 
 	if event.is_action_pressed("menu_restart"):
 		restart()
 	
-	if event.is_action_pressed("action_gun"):
+	if event.is_action_pressed("action_gun") and GameState.player_has_gun:
 		gun_toggle()
 
 	if event.is_action_pressed("action_use") and gun_equipped:
@@ -100,17 +106,43 @@ func _input(event: InputEvent) -> void:
 # ====================
 #region
 func _ready() -> void:
-	GameState.player = self # FOR BYPASS
+	GameState.player = self
 	GameState.update_current_scene()
+
+	if inventory != null:
+		GameState.inventory = inventory
+
 	print("\nYou are in ", GameState.current_scene)
 	print(GameState.player_stats)
 	_default_cursor_shape = Input.get_current_cursor_shape()
 	Input.set_custom_mouse_cursor(null)
 	gun_flash.visible = false
 	GameState.set_muted(GameState.muted)
+	sprite.rotation_degrees = 0.0
+	sprite.modulate = Color(1, 1, 1, 1)
+
+	if not GameState.player_has_gun:
+		gun_equipped = false
+
+	_update_gun_transform()
+	gun.visible = gun_equipped and GameState.player_has_gun
+
+	_start_spawn_invincibility()
+
+func _start_spawn_invincibility() -> void:
+	_is_invincible = true
+	await get_tree().create_timer(_is_invincible_duration).timeout
+	if _is_dead:
+		return
+	_is_invincible = false
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
+	if _is_dead:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+
 	# ===== MOVEMENT =====
 	var dir := Vector2(
 		Input.get_axis("move_left", "move_right"),
@@ -132,7 +164,9 @@ func _physics_process(delta: float) -> void:
 			facing = "right" if dir.x > 0.0 else "left"
 		else:
 			facing = "down" if dir.y > 0.0 else "up"
+
 	_update_animation(is_moving, sprinting)
+	_update_gun_transform()
 
 	# ===== FOOTSTEP SOUND LOOP =====
 	if is_moving:
@@ -147,6 +181,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if sfx_footstep.playing:
 			sfx_footstep.stop()
+
 	_was_sprinting = sprinting
 
 func _update_animation(is_moving: bool, sprinting: bool) -> void:
@@ -154,6 +189,24 @@ func _update_animation(is_moving: bool, sprinting: bool) -> void:
 	anim_player.speed_scale = 1.2 if sprinting else 1.0
 	if anim_player.current_animation != anim_name:
 		anim_player.play(anim_name)
+
+func _update_gun_transform() -> void:
+	if gun == null:
+		return
+
+	match facing:
+		"down":
+			gun.position = Vector2(-8.0, -8.0)
+			gun.z_index = 0
+		"up":
+			gun.position = Vector2(8.0, -8.0)
+			gun.z_index = 0
+		"left":
+			gun.position = Vector2(-2.0, -8.0)
+			gun.z_index = 0
+		"right":
+			gun.position = Vector2(2.0, -8.0)
+			gun.z_index = 0
 #endregion
 
 # ====================
@@ -161,11 +214,17 @@ func _update_animation(is_moving: bool, sprinting: bool) -> void:
 # ====================
 #region
 func restart() -> void:
+	_is_dead = false
+	_is_invincible = false
 	GameState.reset_stats()
-	inventory.clear()
+
+	#if inventory != null:
+		#inventory.clear()
+
 	world_environment.fade_out()
 	await get_tree().create_timer(1.0).timeout
 	sprite.modulate = Color(1, 1, 1, 1)
+	sprite.rotation_degrees = 0.0
 	get_tree().reload_current_scene()
 
 func collect(item) -> void:
@@ -175,25 +234,51 @@ func shake() -> void:
 	camera.add_trauma(0.2)
 
 func hurt() -> void:
+	if _is_dead or _is_invincible:
+		return
 	sfx("hurt")
 	camera.add_trauma(0.2)
 	sprite.modulate = Color(1.8, 0.3, 0.3, 1.0)
 	await get_tree().create_timer(0.08).timeout
+	if _is_dead:
+		return
 	sprite.modulate = Color(1, 1, 1, 1)
 
 func death() -> void:
+	if _is_dead or _is_invincible:
+		return
+
+	_is_dead = true
 	sfx("death")
 	background_music.volume_db = -80.0
+
+	velocity = Vector2.ZERO
+	if sfx_footstep.playing:
+		sfx_footstep.stop()
+
+	facing = "up"
+	anim_player.play("idle_up")
+	sprite.rotation_degrees = -90.0
+	sprite.offset = Vector2(0, -5)
+	gun.visible = false
+
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1.8, 0.3, 0.3, 1.0)
-	await get_tree().create_timer(2).timeout
+
+	await get_tree().create_timer(2.0).timeout
 	restart()
 
 func sleep() -> void:
 	world_environment.fade_sleep()
 
 func gun_toggle() -> void:
+	if not GameState.player_has_gun:
+		return
+
 	gun_equipped = !gun_equipped
+	gun.visible = gun_equipped
+	_update_gun_transform()
+
 	print("player: gun_toggle()\n- ", gun_equipped)
 
 	if gun_equipped:
@@ -204,8 +289,14 @@ func gun_toggle() -> void:
 		Input.set_default_cursor_shape(_default_cursor_shape)
 
 func shoot() -> void:
+	if _is_dead:
+		return
+	if not gun_equipped:
+		return
 	if not sfx_gun_shoot.playing:
 		_flash_gun()
+		camera.add_trauma(0.1)
+		gun.fire()
 		sfx("gun_shoot")
 
 func _flash_gun() -> void:
@@ -229,6 +320,8 @@ func _is_mouse_over_ui() -> bool:
 	return false
 
 func dialogue() -> void:
+	if _is_dead:
+		return
 	if GameState.dialogue_active:
 		return
 

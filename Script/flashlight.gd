@@ -15,12 +15,20 @@ var offset_degree: float = -90
 @export var off_duration: float = 5.0
 @export var post_flicker_duration: float = 0.45
 
+# ===== RANDOM EVENTS =====
+@export var random_event_enabled: bool = true
+@export var random_event_min_wait: float = 8.0  # every x to y second, random event plays
+@export var random_event_max_wait: float = 20.0
+@export_range(0.0, 1.0, 0.01)
+var random_event_chance: float = 0.45
+
 var _is_flickering := false
 var _flicker_timer := 0.0
 var _flicker_duration := 0.0
 var _base_energy: float
 var _sequence_running := false
 var _sequence_id := 0
+var _random_event_running := false
 
 # ====================
 # INPUTS
@@ -39,10 +47,12 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	randomize()
 	_base_energy = energy
+	random_event()
 
 func _process(delta: float) -> void:
-	# Rotate with mouse cursor
-	if enabled:
+	var can_rotate := enabled and not (GameState.player != null and GameState.player._is_dead)
+
+	if can_rotate:
 		var mouse_pos := get_global_mouse_position()
 		var dir := mouse_pos - global_position
 		if dir.length_squared() > 0.0001:
@@ -62,6 +72,40 @@ func _process(delta: float) -> void:
 # ====================
 # OTHER
 # ====================
+
+# ===== RANDOM EVENT LOOP =====
+func random_event() -> void:
+	if _random_event_running:
+		return
+
+	_random_event_running = true
+	_random_event_loop()
+
+func _random_event_loop() -> void:
+	while is_inside_tree():
+		if not random_event_enabled:
+			await get_tree().create_timer(1.0).timeout
+			continue
+
+		var wait_time := randf_range(random_event_min_wait, random_event_max_wait)
+		await get_tree().create_timer(wait_time).timeout
+
+		if not is_inside_tree():
+			return
+
+		if GameState.player != null and GameState.player._is_dead:
+			continue
+
+		if _sequence_running:
+			continue
+
+		if randf() > random_event_chance:
+			continue
+
+		if randi() % 2 == 0:
+			start_flicker(1.5)
+		else:
+			run_flicker_off_on_sequence()
 
 # ===== FLICKER CONTROLS =====
 func start_flicker(

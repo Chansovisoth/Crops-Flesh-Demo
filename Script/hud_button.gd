@@ -1,7 +1,7 @@
 # Script   : hud_button.gd
 # Function : For modulating buttons (children), turn them green
 
-extends HBoxContainer
+extends Container
 
 const HOVER_COLOR := Color(0.4, 1.0, 0.4)
 const NORMAL_COLOR := Color.WHITE

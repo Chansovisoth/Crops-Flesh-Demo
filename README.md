@@ -1,9 +1,9 @@
-<h1 align="center"> Crops & Flesh (Alpha Demo) </h1>
+<h1 align="center"> Crops & Flesh (Demo) </h1>
 <h3 align="center"> Overview </h3>
 
-**Crops & Flesh** is a top-down pixel art survival RPG, developed as part of an academic game project, that blends cozy farming gameplay with light horror, and dark comedy. The game places the player in a quiet rural environment where daily routines such as farming, crafting, and eating are slowly disrupted by hoards of enemies.
+**Crops & Flesh** is a top-down pixel art survival RPG developed as part of an academic game project. It blends light horror, dark comedy, and survival mechanics in a quiet rural setting slowly overtaken by hordes of enemies.
 
-The core experience focuses on survival under pressure, where every action, what to grow, what to eat, and how to process resources, has long-term consequences. The contrast between peaceful farm life and escalating danger is central to the game’s identity.
+The game places the player in a once-peaceful countryside where survival becomes the main priority. Players must explore and defend themselves against waves of undead threats.
 
 ## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/303796012/static/light/3.0" height="40"/> Gameplay Video (Alpha) 
 
@@ -25,7 +25,6 @@ Video demonstrates the following:
 - Placeholder shooting mechanic
 - HUD-based interactions
 - Environmental lighting used to enhance tension
-- Designed as an **early alpha demo** (not a full game yet)
 
 ## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/301025208/static/light/3.0" height="40"/> Screenshots
 
@@ -80,7 +79,7 @@ This repository includes an **Alpha version release** demonstrating:
 
 AI Disclosure:
 - AI model used: ChatGPT
-- Fixed faulty scripts and help speed up the development process, helped me learned game concepts and facts
+- Helped me fix faulty scripts and come up with complex code that my brain can never comprehend
 
 This is all I got for now. More to see in the future. :p
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b0xd5sr7eopn7"
+path="res://.godot/imported/gun.dialogue-ab9322eb5c17f478709ecc97917e0b1b.tres"
+
+[deps]
+
+source_file="res://Dialogue/gun.dialogue"
+dest_files=["res://.godot/imported/gun.dialogue-ab9322eb5c17f478709ecc97917e0b1b.tres"]
+
+[params]
+
+defaults=true

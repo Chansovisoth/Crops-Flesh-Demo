@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bvy0a056yrogn"]
+[gd_scene load_steps=51 format=3 uid="uid://bvy0a056yrogn"]
 
 [ext_resource type="Script" uid="uid://cvx8gbcd6xysc" path="res://Script/player.gd" id="1_1vqkc"]
 [ext_resource type="Resource" uid="uid://cwo7pq827i1qd" path="res://Inventory/inventory_player1.tres" id="2_1vqkc"]
@@ -31,6 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://cvja0uc4f14rq" path="res://Asset/Audio/SFX/hungry.mp3" id="31_71nu8"]
 [ext_resource type="AudioStream" uid="uid://bk88juyq828lr" path="res://Asset/Audio/SFX/hurt1.mp3" id="32_dfe5c"]
 [ext_resource type="AudioStream" uid="uid://d135gfes5r6i6" path="res://Asset/Audio/SFX/death.mp3" id="33_8wn1n"]
+[ext_resource type="PackedScene" uid="uid://doo7f7q6keaxd" path="res://Scene/gun.tscn" id="33_h2j5n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7d6xm"]
 bg_color = Color(0, 0, 0, 0.2509804)
@@ -41,14 +42,14 @@ corner_radius_bottom_left = 8
 expand_margin_left = 6.0
 expand_margin_right = 6.0
 
-[sub_resource type="SystemFont" id="SystemFont_7d6xm"]
+[sub_resource type="SystemFont" id="SystemFont_ddib3"]
 font_names = PackedStringArray("Fredoka")
 hinting = 2
 subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_7d6xm"]
-font = SubResource("SystemFont_7d6xm")
+font = SubResource("SystemFont_ddib3")
 font_color = Color(1, 1, 1, 0.8745098)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
@@ -475,14 +476,14 @@ gradient = SubResource("Gradient_c8uwk")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "inventort_ui")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inventort_ui")]
 collision_layer = 9
 script = ExtResource("1_1vqkc")
-camera = NodePath("Camera2D")
 inventory = ExtResource("2_1vqkc")
 inventort_ui = NodePath("CanvasLayer/InventoryUI")
 
 [node name="NameTag" type="Node2D" parent="."]
+visible = false
 position = Vector2(-4, -41.000004)
 scale = Vector2(0.4, 0.4)
 metadata/_edit_lock_ = true
@@ -621,7 +622,7 @@ metadata/_edit_lock_ = true
 
 [node name="GunShoot" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("27_yosb2")
-volume_db = 10.0
+volume_db = -4.0
 max_distance = 500.0
 
 [node name="DoorOpen" type="AudioStreamPlayer2D" parent="SFX"]
@@ -652,3 +653,6 @@ max_distance = 500.0
 [node name="Death" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("33_8wn1n")
 max_distance = 500.0
+
+[node name="Gun" parent="." instance=ExtResource("33_h2j5n")]
+position = Vector2(-8, -8)

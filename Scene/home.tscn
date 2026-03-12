@@ -1,4 +1,4 @@
-[gd_scene load_steps=194 format=4 uid="uid://b2sju0huulldl"]
+[gd_scene load_steps=195 format=4 uid="uid://b2sju0huulldl"]
 
 [ext_resource type="PackedScene" uid="uid://bvy0a056yrogn" path="res://Scene/player.tscn" id="1_no814"]
 [ext_resource type="Script" uid="uid://7lbmb8v8ab5g" path="res://Script/scene_fade.gd" id="1_thkxx"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bwuyrkl7203oy" path="res://Asset/Texture/Environment/Prop/Static/TopDownHouse_FloorsAndWalls.png" id="10_hh6xh"]
 [ext_resource type="Texture2D" uid="uid://febe02jrysnc" path="res://Asset/Texture/Environment/Prop/Static/Furniture.png" id="11_xbrjj"]
 [ext_resource type="Texture2D" uid="uid://bcpqu6my2qb7r" path="res://Asset/Texture/Environment/Prop/Static/TopDownHouse_SmallItems.png" id="13_albdu"]
+[ext_resource type="Resource" uid="uid://b0xd5sr7eopn7" path="res://Dialogue/gun.dialogue" id="13_tcna0"]
 [ext_resource type="Script" uid="uid://wcuk536mx2ss" path="res://Script/dialogue.gd" id="15_r2uw7"]
 [ext_resource type="Resource" uid="uid://yqjgckshprrx" path="res://Dialogue/mirror.dialogue" id="16_rngmo"]
 [ext_resource type="Resource" uid="uid://0xeug16nqwyx" path="res://Dialogue/bed.dialogue" id="17_ox16j"]
@@ -2779,13 +2780,13 @@ position = Vector2(584, 61)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
 stream = ExtResource("3_4p8lb")
-volume_db = -10.0
+volume_db = -18.0
 autoplay = true
 
 [node name="PropStructure" type="TileMapLayer" parent="Map/YSort"]
 light_mask = 2
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAUAPr/BgAAAAAAAAAUAPv/BgAAAAEAAAAVAPr/BgABAAAAAAAWAPr/BgABAAAAAAAXAPr/BgABAAAAAAAYAPr/BgABAAAAAAAZAPr/BgABAAAAAAAaAPr/BgABAAAAAAAbAPr/BgABAAAAAAAcAPr/BgABAAAAAAAdAPr/BgABAAAAAAAeAPr/BgABAAAAAAAfAPr/BgABAAAAAAAgAPr/BgABAAAAAAAhAPr/BgABAAAAAAAiAPr/BgABAAAAAAAjAPr/BgABAAAAAAAkAPr/BgABAAAAAAAlAPr/BgABAAAAAAAmAPr/BgARAAAAAAAmAPv/BgARAAEAAAAmAPz/BgARAAEAAAAmAP3/BgARAAEAAAAmAP7/BgARAAEAAAAmAP//BgARAAEAAAAmAAAABgARAAEAAAAUAAAABgAAAAEAAAAUAP//BgAAAAEAAAAUAP7/BgAAAAEAAAAUAP3/BgAAAAEAAAAUAPz/BgAAAAEAAAAUAAEABgAAAAEAAAAUAAIABgAAAAEAAAAUAAMABgAAAAEAAAAUAAQABgAAAAgAAAAVAAQABgAQAAgAAAAWAAQABgAQAAgAAAAXAAQABgAQAAgAAAAYAAQABgAQAAgAAAAZAAQABgAQAAgAAAAaAAQABgAQAAgAAAAbAAQABgAQAAgAAAAcAAQABgAQAAgAAAAdAAQABgAQAAgAAAAeAAQABgAQAAgAAAAfAAQABgAQAAgAAAAgAAQABgAQAAgAAAAiAAQABgAQAAgAAAAjAAQABgAQAAgAAAAkAAQABgAAAAYAAHAlAAQABgAQAAgAAAAmAAEABgARAAEAAAAmAAIABgARAAEAAAAmAAMABgARAAEAAAAmAAQABgARAAgAAAAjAAUABAApADEAAAAkAAUABAApADEAAAAlAAUABAApADEAAAAhAAQABgAQAAgAAAA=")
+tile_map_data = PackedByteArray("AAAUAPr/BgAAAAAAAAAUAPv/BgAAAAEAAAAVAPr/BgABAAAAAAAWAPr/BgABAAAAAAAXAPr/BgABAAAAAAAYAPr/BgABAAAAAAAZAPr/BgABAAAAAAAaAPr/BgABAAAAAAAbAPr/BgABAAAAAAAcAPr/BgABAAAAAAAdAPr/BgABAAAAAAAeAPr/BgABAAAAAAAfAPr/BgABAAAAAAAgAPr/BgABAAAAAAAhAPr/BgABAAAAAAAiAPr/BgABAAAAAAAjAPr/BgABAAAAAAAkAPr/BgABAAAAAAAlAPr/BgABAAAAAAAmAPr/BgARAAAAAAAmAPv/BgARAAEAAAAmAPz/BgARAAEAAAAmAP3/BgARAAEAAAAmAP7/BgARAAEAAAAmAP//BgARAAEAAAAmAAAABgARAAEAAAAUAAAABgAAAAEAAAAUAP//BgAAAAEAAAAUAP7/BgAAAAEAAAAUAP3/BgAAAAEAAAAUAPz/BgAAAAEAAAAUAAEABgAAAAEAAAAUAAIABgAAAAEAAAAUAAMABgAAAAEAAAAUAAQABgAAAAgAAAAVAAQABgAQAAgAAAAWAAQABgAQAAgAAAAXAAQABgAQAAgAAAAYAAQABgAQAAgAAAAZAAQABgAQAAgAAAAaAAQABgAQAAgAAAAbAAQABgAQAAgAAAAcAAQABgAQAAgAAAAdAAQABgAQAAgAAAAeAAQABgAQAAgAAAAfAAQABgAQAAgAAAAgAAQABgAQAAgAAAAiAAQABgAQAAgAAAAjAAQABgAQAAgAAAAkAAQABgAAAAYAAHAlAAQABgAQAAgAAAAmAAEABgARAAEAAAAmAAIABgARAAEAAAAmAAMABgARAAEAAAAmAAQABgARAAgAAAAjAAUABAApADEAAAAkAAUABAApADEAAAAlAAUABAApADEAAAAhAAQABgAQAAgAAAAiAAUABAApADEAAAA=")
 tile_set = SubResource("TileSet_dj0hx")
 
 [node name="Floor" type="TileMapLayer" parent="Map/YSort/PropStructure"]
@@ -2812,11 +2813,12 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAZAPv/BQAAABAAAQAgAP//CAAGAAMAAQAfAP//CAAHAAEAAgAeAP//CAABAAMAAgAVAAMACAAHAAIAAgAWAAMACAAGAAIAAgA=")
 tile_set = SubResource("TileSet_dj0hx")
 
-[node name="ItemGun" parent="Map" instance=ExtResource("26_hugsp")]
-position = Vector2(407, -69)
+[node name="ItemGun" parent="Map/YSort" instance=ExtResource("26_hugsp")]
+position = Vector2(405, -54.899986)
+pickup_dialogue_resource = ExtResource("13_tcna0")
 
 [node name="SceneTrigger" type="Area2D" parent="Map" node_paths=PackedStringArray("world_environment", "player")]
-position = Vector2(584, 74)
+position = Vector2(584, 78)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("9_albdu")

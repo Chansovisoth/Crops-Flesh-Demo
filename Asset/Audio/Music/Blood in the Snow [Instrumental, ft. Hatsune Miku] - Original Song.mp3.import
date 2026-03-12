@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tabi535357h5"
+path="res://.godot/imported/Blood in the Snow [Instrumental, ft. Hatsune Miku] - Original Song.mp3-8b672624e5874fa3925c71a0b7e42a27.mp3str"
+
+[deps]
+
+source_file="res://Asset/Audio/Music/Blood in the Snow [Instrumental, ft. Hatsune Miku] - Original Song.mp3"
+dest_files=["res://.godot/imported/Blood in the Snow [Instrumental, ft. Hatsune Miku] - Original Song.mp3-8b672624e5874fa3925c71a0b7e42a27.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

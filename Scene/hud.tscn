@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://26t8wq24rkcs"]
+[gd_scene load_steps=23 format=3 uid="uid://26t8wq24rkcs"]
 
 [ext_resource type="Script" uid="uid://wxlf0xgrhrnb" path="res://Script/hud_button.gd" id="1_mnrcq"]
 [ext_resource type="Texture2D" uid="uid://dp4m7ct2geygb" path="res://Asset/Texture/GUI/buttons.png" id="2_2vev5"]
@@ -10,12 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://btw78kt2tyv1m" path="res://Asset/Texture/GUI/bar_health.png" id="8_3qwin"]
 [ext_resource type="Script" uid="uid://drwaukm5xhrq1" path="res://Script/bar_hp.gd" id="9_3qwin"]
 [ext_resource type="Script" uid="uid://c15ea26dtc4l4" path="res://Script/bar_hunger.gd" id="9_7odbf"]
+[ext_resource type="Script" uid="uid://b10ek8lxvakwf" path="res://Script/text_mission.gd" id="11_hjpjq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kuhwe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjpjq"]
 atlas = ExtResource("2_2vev5")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_afcgt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_axi7f"]
 atlas = ExtResource("2_2vev5")
 region = Rect2(16, 16, 16, 16)
 
@@ -34,6 +35,42 @@ region = Rect2(0, 48, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dks8w"]
 atlas = ExtResource("2_2vev5")
 region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7odbf"]
+bg_color = Color(0, 0, 0, 0.2509804)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="SystemFont" id="SystemFont_7d6xm"]
+font_names = PackedStringArray("Fredoka")
+font_weight = 600
+hinting = 2
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_hjpjq"]
+font = SubResource("SystemFont_7d6xm")
+font_size = 20
+font_color = Color(1, 1, 1, 0.8745098)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_7odbf"]
+font_names = PackedStringArray("Fredoka")
+hinting = 2
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_7odbf"]
+font = SubResource("SystemFont_7odbf")
+font_size = 18
+font_color = Color(1, 1, 1, 0.8745098)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -65,9 +102,9 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = SubResource("AtlasTexture_kuhwe")
-texture_pressed = SubResource("AtlasTexture_afcgt")
-texture_hover = SubResource("AtlasTexture_kuhwe")
+texture_normal = SubResource("AtlasTexture_hjpjq")
+texture_pressed = SubResource("AtlasTexture_axi7f")
+texture_hover = SubResource("AtlasTexture_hjpjq")
 script = ExtResource("3_4xxn1")
 
 [node name="MuteButton" type="TextureButton" parent="Control/MarginContainer/HBoxContainer"]
@@ -113,6 +150,7 @@ texture_progress = ExtResource("8_3qwin")
 script = ExtResource("9_3qwin")
 
 [node name="Hunger" type="TextureProgressBar" parent="Control/MarginContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 value = 100.0
 fill_mode = 1
@@ -120,6 +158,75 @@ texture_under = ExtResource("7_7odbf")
 texture_progress = ExtResource("8_3qwin")
 tint_progress = Color(1.179842, 1.179842, 0, 1)
 script = ExtResource("9_7odbf")
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control"]
+modulate = Color(1, 1, 1, 0.8901961)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.5
+offset_top = 32.0
+offset_right = 145.5
+offset_bottom = 91.54167
+grow_horizontal = 2
+script = ExtResource("11_hjpjq")
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7odbf")
+
+[node name="Label" type="Label" parent="Control/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "???"
+label_settings = SubResource("LabelSettings_hjpjq")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer4" type="MarginContainer" parent="Control"]
+modulate = Color(1, 1, 1, 0.69411767)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -96.0
+offset_right = -24.0
+offset_bottom = -23.625
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Control/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "TIPS:
+ [G]          Toggle gun
+ [R]           Reload scene
+ [M]          Toggle music
+ [TAB]      Toggle Inventory
+ [SHIFT]   Sprint"
+label_settings = SubResource("LabelSettings_7odbf")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "
+
+
+
+
+Demo v1.0.0"
+label_settings = SubResource("LabelSettings_7odbf")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/RestartButton" to="Control/MarginContainer/HBoxContainer/RestartButton" method="_on_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MuteButton" to="Control/MarginContainer/HBoxContainer/MuteButton" method="_on_pressed"]
