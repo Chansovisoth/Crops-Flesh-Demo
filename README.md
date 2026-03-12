@@ -70,13 +70,6 @@ All assets are used for **educational and non-commercial purposes**.
 - **Language:** GDScript  
 - **Platform:** PC (Desktop)  
 
-This repository includes an **Alpha version release** demonstrating:
-- Core movement
-- Tiles and Player collision
-- Shooting mechanics
-- Lighting effects
-- HUD buttons
-
 AI Disclosure:
 - AI model used: ChatGPT
 - Helped me fix faulty scripts and come up with complex code that my brain can never comprehend
