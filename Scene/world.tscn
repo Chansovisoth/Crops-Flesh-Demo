@@ -8367,11 +8367,6 @@ enemy_scene = ExtResource("13_q32hj")
 spawn_interval = 10.0
 max_spawn_count = 14
 
-[node name="SpawnerEnemy3" parent="Map/YSort" instance=ExtResource("10_6e56i")]
-position = Vector2(-16, 632)
-enemy_scene = ExtResource("13_q32hj")
-spawn_interval = 10.0
-
 [node name="PropTree" type="TileMapLayer" parent="Map/YSort"]
 light_mask = 2
 y_sort_enabled = true

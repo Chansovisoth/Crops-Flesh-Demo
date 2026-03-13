@@ -16,7 +16,7 @@ var current_scene := ""
 var scene_transitioning := false
 
 var zombies_killed: int = 0
-var zombies_goal: int = 25
+var zombies_goal: int = 20
 var _mission_complete_handled := false
 
 var player_stats := {

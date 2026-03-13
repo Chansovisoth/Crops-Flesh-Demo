@@ -1,17 +1,15 @@
-<h1 align="center"> Crops & Flesh (Demo) </h1>
+<h1 align="center"> Crops & Flesh </h1>
 <h3 align="center"> Overview </h3>
 
 **Crops & Flesh** is a top-down pixel art survival RPG developed as part of an academic game project. It blends light horror, dark comedy, and survival mechanics in a quiet rural setting slowly overtaken by hordes of enemies.
 
 The game places the player in a once-peaceful countryside where survival becomes the main priority. Players must explore and defend themselves against waves of undead threats.
 
-## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/303796012/static/light/3.0" height="40"/> Gameplay Video (Alpha) 
-
-<!-- [![Gameplay Demo](https://img.youtube.com/vi/1ODa7_0328M/hqdefault.jpg)](https://youtu.be/1ODa7_0328M) -->
+## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/303796012/static/light/3.0" height="40"/> Gameplay Video 
 
 <p align="center">
   <a href="https://youtu.be/1ODa7_0328M">
-    <img src="https://img.youtube.com/vi/1ODa7_0328M/hqdefault.jpg" alt="Gameplay Demo">
+    <img src="Screenshot/Thumbnail.png" alt="Gameplay Demo">
   </a>
 </p>
 
@@ -36,6 +34,8 @@ Video demonstrates the following:
 
 ![Screenshot 4](Screenshot/4.png)
 
+![Screenshot 5](Screenshot/5.png)
+
 ## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/304404433/static/light/3.0" height="40"/> Visual Style & Mood 
 
 ### Visual Style
@@ -58,11 +58,18 @@ Video demonstrates the following:
 - **Top Down House** by Penzilla  
   https://penzilla.itch.io/top-down-retro-interior  
 
+### Music
+- **Blood in the Snow [Instrumental, ft. Hatsune Miku]** by Jaelynn Laveren  
+  https://www.youtube.com/watch?v=GbUdeXDz604
+
+- **Better off Dead** by Chris Huelsbeck  
+  https://www.youtube.com/watch?v=nBMzytPjC9g
+
 ### Sound Effects
 - Pixabay Sound Effects  
   https://pixabay.com/sound-effects/  
 
-All assets are used for **educational and non-commercial purposes**.
+All assets are used for **educational and non-commercial purposes**!
 
 
 ## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ec8634284f984730ad206097f646d0d7/static/light/3.0" height="40"/> Technologies & Features
@@ -72,9 +79,9 @@ All assets are used for **educational and non-commercial purposes**.
 
 AI Disclosure:
 - AI model used: ChatGPT
-- Helped me fix faulty scripts and come up with complex code that my brain can never comprehend
+- Helped me fix faulty scripts and come up with complex code that my brain can never comprehend :'I
 
-This is all I got for now. More to see in the future. :p
+This is all I got for now. More to see in the future.
 
 
 
