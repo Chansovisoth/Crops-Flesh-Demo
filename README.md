@@ -17,13 +17,6 @@ The game places the player in a once-peaceful countryside where survival becomes
   Click to redirect to YouTube
 </p>
 
-Video demonstrates the following:
-- Basic movement
-- Player explores enclosed environments
-- Placeholder shooting mechanic
-- HUD-based interactions
-- Environmental lighting used to enhance tension
-
 ## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/301025208/static/light/3.0" height="40"/> Screenshots
 
 ![Screenshot 1](Screenshot/1.png)
