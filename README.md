@@ -8,7 +8,7 @@ The game places the player in a once-peaceful countryside where survival becomes
 ## ​<img src="https://static-cdn.jtvnw.net/emoticons/v2/303796012/static/light/3.0" height="40"/> Gameplay Video 
 
 <p align="center">
-  <a href="https://youtu.be/1ODa7_0328M">
+  <a href="https://youtu.be/p7yA_Xa26Ng?si=PobVbqudLMAOWJdc">
     <img src="Screenshot/Thumbnail.png" alt="Gameplay Demo">
   </a>
 </p>
