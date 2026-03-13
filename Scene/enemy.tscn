@@ -163,7 +163,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"dying",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -209,7 +209,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5op34"]
@@ -232,7 +232,7 @@ light_mask = 32
 material = SubResource("CanvasItemMaterial_ta8wi")
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_fk7de")
-animation = &"dead"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -19)
@@ -260,23 +260,22 @@ autostart = true
 
 [node name="Zombie" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("6_e6lwa")
-volume_db = -25.0
+volume_db = -10.0
 autoplay = true
 
 [node name="Punch" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("7_3m5gj")
-volume_db = -5.0
 pitch_scale = 0.9
 autoplay = true
 
 [node name="Death1" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("8_kswis")
-volume_db = -14.0
+volume_db = -7.0
 pitch_scale = 0.9
 autoplay = true
 
 [node name="Death2" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("9_chcym")
-volume_db = -14.0
+volume_db = -7.0
 pitch_scale = 0.9
 autoplay = true

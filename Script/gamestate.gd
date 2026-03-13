@@ -13,9 +13,10 @@ var dialogue_active := false
 var muted := false
 var player_dead := false
 var current_scene := ""
+var scene_transitioning := false
 
 var zombies_killed: int = 0
-var zombies_goal: int = 20
+var zombies_goal: int = 25
 var _mission_complete_handled := false
 
 var player_stats := {
@@ -76,11 +77,16 @@ func change_hp(delta: int) -> void:
 	if delta == 0:
 		return
 
-	if delta < 0 and player:
-		if player._is_dead:
+	if delta < 0:
+		if player_dead:
 			return
-		if player._is_invincible:
+		if scene_transitioning:
 			return
+		if player:
+			if player._is_dead:
+				return
+			if player._is_invincible:
+				return
 
 	var old_hp: int = player_stats["hp"]
 	set_hp(old_hp + delta)
@@ -99,7 +105,6 @@ func reset_stats() -> void:
 	player_dead = false
 	set_hp(player_stats["hp_max"])
 	set_hunger(player_stats["hunger_max"])
-	reset_zombie_kills()
 #endregion - Player Stats
 #endregion
 
@@ -129,14 +134,38 @@ func get_mission_text() -> String:
 	return "MISSION:\nDefeat %d Zombies (%d/%d)" % [zombies_goal, shown_kills, zombies_goal]
 
 func _handle_zombie_mission_complete() -> void:
+	scene_transitioning = true
 	var world_environment := _get_world_environment()
 
 	if world_environment and world_environment.has_method("fade_out"):
 		world_environment.call("fade_out")
-
 	await get_tree().create_timer(2.0).timeout
-
+	reset_after_win()
 	get_tree().change_scene_to_file("res://Scene/win.tscn")
+#endregion
+
+
+# ====================
+# RESET / SESSION
+# ====================
+#region
+func reset_after_death_or_restart() -> void:
+	player_dead = false
+	scene_transitioning = false
+	reset_zombie_kills()
+	set_hp(player_stats["hp_max"])
+	set_hunger(player_stats["hunger_max"])
+
+func reset_after_win() -> void:
+	reset_stats()
+	reset_zombie_kills()
+	item_gun_taken = false
+	player_has_gun = false
+	dialogue_active = false
+	player_dead = false
+
+	if inventory:
+		inventory.clear()
 #endregion
 
 
@@ -175,7 +204,8 @@ func _apply_mute() -> void:
 #region
 #func restart() -> void:
 #	reset_stats()
-#	inventory.clear()
+#	if inventory:
+#		inventory.clear()
 #	var world_environment := _get_world_environment()
 #	world_environment.call("fade_out")
 #	await get_tree().create_timer(1.0).timeout

@@ -1,5 +1,6 @@
-[gd_scene load_steps=219 format=4 uid="uid://cqo3o8nuqth6i"]
+[gd_scene load_steps=223 format=4 uid="uid://cqo3o8nuqth6i"]
 
+[ext_resource type="Script" uid="uid://uhneh14p7m5j" path="res://Script/start_float_up.gd" id="1_3y3la"]
 [ext_resource type="Texture2D" uid="uid://cvfxaelqfb0vv" path="res://Asset/Texture/Environment/Structure/Floors.png" id="1_jikgm"]
 [ext_resource type="Texture2D" uid="uid://sl1bb3p3eskt" path="res://Asset/Texture/Environment/Structure/Props.png" id="2_3h5te"]
 [ext_resource type="Texture2D" uid="uid://bbk63ebxq5pna" path="res://Asset/Texture/Environment/Structure/Roofs.png" id="3_4lvfu"]
@@ -30,6 +31,12 @@
 [ext_resource type="Script" uid="uid://bysh2i1bfaw3s" path="res://Script/start_play_button.gd" id="29_1mua1"]
 [ext_resource type="Script" uid="uid://c288ac4mfj3xf" path="res://Script/start_exit_button.gd" id="30_3y3la"]
 [ext_resource type="PackedScene" uid="uid://b2sju0huulldl" path="res://Scene/home.tscn" id="30_kg2o7"]
+
+[sub_resource type="Environment" id="Environment_1mua1"]
+background_mode = 3
+adjustment_enabled = true
+adjustment_brightness = 1.22
+adjustment_saturation = 1.09
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4ger"]
 texture = ExtResource("1_jikgm")
@@ -3421,6 +3428,15 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_3y3la"]
+colors = PackedColorArray(0.6174547, 0.61745477, 0.6174546, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kg2o7"]
+gradient = SubResource("Gradient_3y3la")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8888889, 0.13247864)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fn5fn"]
 atlas = ExtResource("8_tvlai")
 region = Rect2(0, 32, 16, 16)
@@ -3484,77 +3500,70 @@ shadow_color = Color(0, 0, 0, 1)
 
 [node name="StartMenu" type="Node2D"]
 
-[node name="Map" type="Node2D" parent="."]
-y_sort_enabled = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1mua1")
 
-[node name="YSort" type="Node2D" parent="Map"]
-y_sort_enabled = true
-
-[node name="Player" type="Node2D" parent="Map/YSort"]
-position = Vector2(464, 856)
-
-[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
-stream = ExtResource("7_tvlai")
-volume_db = -4.0
-autoplay = true
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="CanvasModulate" type="CanvasModulate" parent="HUD"]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(2000, 104)
 
-[node name="Node2D" type="Node2D" parent="HUD"]
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("world_environment")]
+y_sort_enabled = true
+script = ExtResource("1_3y3la")
+bob_distance = 10.0
+world_environment = NodePath("../WorldEnvironment")
+
+[node name="Node2D" type="Node2D" parent="Map"]
 position = Vector2(-3120.0002, -1591.9999)
 scale = Vector2(3.5, 3.5)
 
-[node name="PropStructure" type="TileMapLayer" parent="HUD/Node2D"]
+[node name="PropStructure" type="TileMapLayer" parent="Map/Node2D"]
 light_mask = 2
 z_as_relative = false
 position = Vector2(840, 644)
 tile_map_data = PackedByteArray("AAATAPz/BAAOAAcAAAATAP//BAATAAYAAAAUAPz/BAAPAAcAAAAUAP//BAAVAAcAAAAVAPz/BAAOAAcAAAAXAPz/BAAOAAcAAAAXAP//BAAVAAcAAAAYAPz/BAAPAAcAAAAYAP//BAAVAAcAAAAZAPz/BAAOAAcAAAAZAP//BAAVAAcAAAAaAPz/BAAPAAcAAAAaAP//BAAUAAcAAAAWAPz/BAAPAAcAAAAbAPz/BAAOAAcAAAAbAP//BAAVAAcAAAAcAPz/BAAPAAcAAAAcAP//BAAWAAYAAAAWAP//BAAVAAcAAAAVAP//BAAUAAcAAAAUAAAABAACADEAAAATAAAABAAFADEAAAAYAAAABAACADEAAAAWAAAABAAGADEAAAAVAAAABAAFADEAAAAcAAAABAAFADEAAAAaAAAABAAHADEAAAAZAAAABAAGADEAAAAXAAAABAACADEAAAA=")
 tile_set = SubResource("TileSet_5c86y")
 
-[node name="Frame" type="TileMapLayer" parent="HUD/Node2D/PropStructure"]
+[node name="Frame" type="TileMapLayer" parent="Map/Node2D/PropStructure"]
 light_mask = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAUAP//AQADAAkAAAAbAP//AQACAAEAAAAbAAAAAQACAAQAAAAUAP7/AQAGAAYAAAAWAP7/AQAEAAYAAAAZAP7/AQAEAAYAAAASAPv/AQAAAAQAAAASAPz/AQAAAAUAAAASAP3/AQAAAAYAAAASAP7/AQAAAAcAAAA=")
 tile_set = SubResource("TileSet_5c86y")
 
-[node name="Door" type="TileMapLayer" parent="HUD/Node2D/PropStructure"]
+[node name="Door" type="TileMapLayer" parent="Map/Node2D/PropStructure"]
 visible = false
 light_mask = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAbAP//AQAGAAEAAAA=")
 tile_set = SubResource("TileSet_5c86y")
 
-[node name="Furniture" type="TileMapLayer" parent="HUD/Node2D/PropStructure"]
+[node name="Furniture" type="TileMapLayer" parent="Map/Node2D/PropStructure"]
 light_mask = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAASAP//AQACAAsAAAARAP//AQACAAsAAAAQAP//AQADAAwAAAAQAP7/AQAAAA0AAAAQAP3/AQAAAA0AAAASAPz/AQACAAsAAAARAPz/AQACAAsAAAAQAPz/AQABAAsAAAAWAAIAAQAFAAoAAAAXAAIAAQAGAAoAAAAYAAIAAQAIAAoAAAA=")
 tile_set = SubResource("TileSet_5c86y")
 
-[node name="Roof" type="TileMapLayer" parent="HUD/Node2D/PropStructure"]
+[node name="Roof" type="TileMapLayer" parent="Map/Node2D/PropStructure"]
 light_mask = 2
 z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAASAPn/AgAAAAIAAAASAPr/AgAAAAMAAAASAPv/AgAAAAMAAAASAPz/AgAAAAQAAAASAP3/AgAAAAUAAAATAPj/AgABAAEAAAATAPn/AgABAAIAAAATAPr/AgACAAIAAAATAPv/AgABAAMAAAATAPz/AgABAAQAAAATAP3/AgABAAUAAAAUAPj/AgACAAEAAAAUAPn/AgACAAIAAAAUAPr/AgACAAIAAAAUAPv/AgACAAMAAAAUAPz/AgACAAQAAAAVAPf/AgABAAEAAAAVAPj/AgABAAIAAAAVAPn/AgABAAMAAAAVAPr/AgABAAMAAAAVAPv/AgABAAQAAAAVAPz/AgABAAUAAAAXAPb/AgADAAAAAAAXAPf/AgADAAEAAAAXAPj/AgADAAIAAAAXAPn/AgADAAMAAAAXAPr/AgADAAMAAAAXAPv/AgADAAQAAAAYAPf/AgAEAAEAAAAYAPj/AgAEAAIAAAAYAPn/AgAEAAMAAAAYAPr/AgAEAAMAAAAYAPv/AgAEAAQAAAAZAPf/AgAFAAEAAAAZAPj/AgAFAAIAAAAZAPn/AgAFAAMAAAAZAPr/AgAFAAMAAAAZAPv/AgAFAAQAAAAaAPj/AgAGAAIAAAAaAPn/AgAGAAMAAAAaAPr/AgAGAAMAAAAaAPv/AgAGAAQAAAAaAPz/AgAGAAUAAAAbAPj/AgAFAAEAAAAbAPn/AgAFAAIAAAAbAPr/AgAFAAIAAAAbAPv/AgAFAAMAAAAbAPz/AgAFAAQAAAAcAPn/AgAGAAIAAAAcAPr/AgAGAAIAAAAcAPv/AgAGAAMAAAAcAPz/AgAGAAQAAAAcAP3/AgAGAAUAAAAWAPf/AgACAAEAAAAWAPj/AgACAAIAAAAWAPn/AgACAAMAAAAWAPr/AgACAAMAAAAWAPv/AgACAAQAAAAYAPb/AgAEAAAAAAAaAPf/AgAGAAEAAAAcAPj/AgAGAAEAAAAdAPn/AgAHAAIAAAAdAPr/AgAHAAMAAAAdAPv/AgAHAAMAAAAdAPz/AgAHAAQAAAAdAP3/AgAHAAUAAAA=")
 tile_set = SubResource("TileSet_5c86y")
 
-[node name="Roof2" type="TileMapLayer" parent="HUD/Node2D/PropStructure/Roof"]
+[node name="Roof2" type="TileMapLayer" parent="Map/Node2D/PropStructure/Roof"]
 light_mask = 2
 z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAASAPn/AQAAAAUAAAATAPn/AQABAAUAAAASAPj/AQAAAAQAAAATAPj/AQABAAQAAAASAPr/AQAAAAUAAAATAPr/AQABAAUAAAA=")
 tile_set = SubResource("TileSet_5c86y")
 
-[node name="Roof3" type="TileMapLayer" parent="HUD/Node2D/PropStructure/Roof"]
+[node name="Roof3" type="TileMapLayer" parent="Map/Node2D/PropStructure/Roof"]
 light_mask = 2
 z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAASAPr/AgAAAAIAAAATAPn/AgABAAEAAAATAPr/AgABAAIAAAA=")
 tile_set = SubResource("TileSet_brix2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HUD/Node2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Map/Node2D"]
 light_mask = 2
 z_as_relative = false
 position = Vector2(1280, 664)
@@ -3564,9 +3573,34 @@ autoplay = "walk_down"
 frame = 1
 offset = Vector2(0, -16)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="HUD/Node2D"]
+[node name="PointLight2D (Prop Lighter)" type="PointLight2D" parent="Map"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(856, 96)
+scale = Vector2(2.255, 2.375)
+color = Color(0.7606387, 0.45481777, 3.85046e-07, 1)
+energy = 1.98
+range_item_cull_mask = 2
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_kg2o7")
+texture_scale = 7.55
+
+[node name="YSort" type="Node2D" parent="Map"]
+y_sort_enabled = true
+
+[node name="Player" type="Node2D" parent="Map/YSort"]
+position = Vector2(464, 856)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
+stream = ExtResource("7_tvlai")
+volume_db = 12.0
+autoplay = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="HUD"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -3640,7 +3674,7 @@ layout_mode = 2
 theme_override_constants/separation = -1
 script = ExtResource("7_4otsm")
 
-[node name="PlayButton" type="TextureButton" parent="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2"]
+[node name="PlayButton" type="TextureButton" parent="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2" node_paths=PackedStringArray("world_environment")]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -3650,6 +3684,7 @@ texture_pressed = SubResource("AtlasTexture_afcgt")
 texture_hover = SubResource("AtlasTexture_kuhwe")
 script = ExtResource("29_1mua1")
 next_scene = ExtResource("30_kg2o7")
+world_environment = NodePath("../../../../../../WorldEnvironment")
 
 [node name="ExitButton" type="TextureButton" parent="HUD/Control/MarginContainer4/VBoxContainer/VBoxContainer2"]
 layout_mode = 2

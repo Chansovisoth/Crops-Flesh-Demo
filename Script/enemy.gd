@@ -6,13 +6,13 @@ extends CharacterBody2D
 @export var target: Node2D
 @onready var fallback_target: Node2D = $"../Player"
 
-@export var patrol_speed: float = 20.0
-@export var chase_speed: float = 30.0
+@export var patrol_speed: float = randf_range(10, 25)
+@export var chase_speed: float = randf_range(20, 42)
 @export var detect_radius: float = 200.0
 @export var attack_distance: float = 18.0
 @export var patrol_wait_time: float = 1.0
 
-@export var hp_max: int = 20
+@export var hp_max: int = randf_range(20, 30)
 @export var damage: int = 10
 @export var attack_cooldown: float = 0.8
 @export var death_fade_time: float = 3
@@ -59,7 +59,7 @@ func _ready() -> void:
 	sfx_death2.stop()
 	sfx_punch.stop()
 
-	sfx_zombie.pitch_scale = randf_range(0.7, 1.1)
+	sfx_zombie.pitch_scale = randf_range(0.65, 1.15)
 	sfx_zombie.play()
 
 	hp = hp_max

@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://d1mgj4s2haock"]
 
-[ext_resource type="AudioStream" uid="uid://caybivckd6lkj" path="res://Asset/Audio/Music/music_for_video-just-relax-11157.mp3" id="1_rlqmq"]
+[ext_resource type="AudioStream" uid="uid://tabi535357h5" path="res://Asset/Audio/Music/Blood in the Snow [Instrumental, ft. Hatsune Miku] - Original Song.mp3" id="1_tpsj8"]
 [ext_resource type="Script" uid="uid://uomoaegtyhkn" path="res://Script/start_replay_button.gd" id="8_tpsj8"]
 [ext_resource type="Script" uid="uid://wxlf0xgrhrnb" path="res://Script/hud_button.gd" id="24_lx8n7"]
 [ext_resource type="Texture2D" uid="uid://djq0jc116na2e" path="res://Asset/Texture/GUI/tres/muted_normal.tres" id="25_yciwy"]
@@ -83,9 +83,9 @@ y_sort_enabled = true
 position = Vector2(464, 856)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
-stream = ExtResource("1_rlqmq")
-volume_db = -6.0
-pitch_scale = 1.4
+stream = ExtResource("1_tpsj8")
+volume_db = 12.0
+pitch_scale = 1.17
 autoplay = true
 
 [node name="HUD" type="CanvasLayer" parent="."]

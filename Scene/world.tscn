@@ -8349,7 +8349,7 @@ position = Vector2(440, 10)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
 stream = ExtResource("28_0ab61")
-volume_db = -6.0
+volume_db = 4.0
 autoplay = true
 
 [node name="Ambience" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
@@ -8359,13 +8359,18 @@ autoplay = true
 [node name="SpawnerEnemy" parent="Map/YSort" instance=ExtResource("10_6e56i")]
 position = Vector2(16, 232)
 enemy_scene = ExtResource("13_q32hj")
-spawn_interval = 4.0
+spawn_interval = 5.0
 
 [node name="SpawnerEnemy2" parent="Map/YSort" instance=ExtResource("10_6e56i")]
 position = Vector2(384, 416)
 enemy_scene = ExtResource("13_q32hj")
-spawn_interval = 6.0
+spawn_interval = 10.0
 max_spawn_count = 14
+
+[node name="SpawnerEnemy3" parent="Map/YSort" instance=ExtResource("10_6e56i")]
+position = Vector2(-16, 632)
+enemy_scene = ExtResource("13_q32hj")
+spawn_interval = 10.0
 
 [node name="PropTree" type="TileMapLayer" parent="Map/YSort"]
 light_mask = 2

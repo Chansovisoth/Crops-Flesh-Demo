@@ -2780,7 +2780,7 @@ position = Vector2(584, 61)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Map/YSort/Player"]
 stream = ExtResource("3_4p8lb")
-volume_db = -18.0
+volume_db = -3.0
 autoplay = true
 
 [node name="PropStructure" type="TileMapLayer" parent="Map/YSort"]

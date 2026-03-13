@@ -112,8 +112,11 @@ func _ready() -> void:
 	if inventory != null:
 		GameState.inventory = inventory
 
+	GameState.reset_after_death_or_restart()
+
 	print("\nYou are in ", GameState.current_scene)
 	print(GameState.player_stats)
+
 	_default_cursor_shape = Input.get_current_cursor_shape()
 	Input.set_custom_mouse_cursor(null)
 	gun_flash.visible = false
@@ -214,13 +217,7 @@ func _update_gun_transform() -> void:
 # ====================
 #region
 func restart() -> void:
-	_is_dead = false
-	_is_invincible = false
-	GameState.reset_stats()
-
-	#if inventory != null:
-		#inventory.clear()
-
+	GameState.scene_transitioning = true
 	world_environment.fade_out()
 	await get_tree().create_timer(1.0).timeout
 	sprite.modulate = Color(1, 1, 1, 1)
@@ -295,7 +292,7 @@ func shoot() -> void:
 		return
 	if not sfx_gun_shoot.playing:
 		_flash_gun()
-		camera.add_trauma(0.1)
+		camera.add_trauma(0.105)
 		gun.fire()
 		sfx("gun_shoot")
 

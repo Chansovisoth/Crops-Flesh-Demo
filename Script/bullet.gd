@@ -3,7 +3,7 @@
 
 extends Area2D
 
-@export var SPEED: float = 500.0
+@export var SPEED: float = 550.0
 @export var DAMAGE: int = 5
 @export var LIFETIME: float = 2.0
 
